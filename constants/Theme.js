@@ -145,7 +145,8 @@ const theme = {
 
     OVERLAY_BACKGROUND: 'rgba(0,0,0,0.5)',
     OVERLAY_BACKGROUND_HALF: 'rgba(0,0,0,0.25)',
-    OVERLAY_HIGHLIGHT: 'rgba(255,255,255, 0.3)',
+    OVERLAY_HIGHLIGHT: 'rgba(255,255,255, 0.25)',
+    OVERLAY_INDICATOR_BG: 'rgba(255, 255, 255, 0.75)'
   },
   FONTS: {
     TEXT: iosPlatform() ? 'nunito' : 'nunito',

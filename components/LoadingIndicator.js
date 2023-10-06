@@ -38,7 +38,7 @@ class LoadingIndicator extends React.Component {
           }}>
           <ActivityIndicator
             animating={true}
-            color={theme.COLORS.DEFAULT}
+            color={theme.COLORS.OVERLAY_INDICATOR_BG}
             size={80}
           />
         </View>
