@@ -1,0 +1,138 @@
+{
+  "comments": "keys use the following format, module.subject.question/entry/etc",
+  "tests.tmp.tmp": {},
+  "tests.suite1.q1": {
+    "q": ["How are you feeling today?"],
+    "a": {
+      "good": "Tests.Suite1.q2.a",
+      "bad": "Tests.Suite1.q2.b"
+    }
+  },
+  "tests.suite1.q2.a": {
+    "q": ["Great to hear! What makes you feel good today?"],
+    "a": {
+      "option1": "Tests.Suite1.q3",
+      "option2": "Tests.Suite1.q3",
+      "option3": "Tests.Suite1.q3"
+    }
+  },
+  "tests.suite1.q2.b": {
+    "q": ["Sorry you're feeling down, do you need help?"],
+    "a": {
+      "yes": "Tests.Suite1.q4",
+      "no": "Tests.Suite1.q3"
+    }
+  },
+  "tests.suite1.q3": {
+    "q": ["Ok, goodbye"],
+    "a": {}
+  },
+  "tests.suite1.q4": {
+    "q": ["WIP, conversation tbd."],
+    "a": {}
+  },
+  "greetings.bye.1": {
+    "q": [
+      "Ok, goodbye",
+      "See you later!",
+      "Have a great day!",
+      "Bye",
+      "See you!",
+      "Thanks for talking with me",
+      "Have a wonderful day",
+      "OK, bye",
+      "See you next time",
+      "I'm looking forward to the next time we can talk,  goodbye.",
+      "All the best, bye"
+    ],
+    "a": {}
+  },
+
+  "routing.chooseModule.listAll": {
+    "q": [
+      "What are you interested in?",
+      "How can I help?",
+      "What would you like to talk about?",
+      "Would anything help right now?",
+      "What would you like to do?",
+      "How should we spend our time together?",
+      "What is most interesting to you right now?",
+      "What interests you?",
+      "How can I help right now?",
+      "I'm looking forward to spending time together. What should we do?"
+    ],
+    "a": {
+      "listening mode": "listeningMode.series1.q1",
+      "breathing practice": "breathingPractice.series1.q1",
+      "guided exercise": "guidedExercise.yoga1.q1",
+      "just chat": "freeformInput"
+    }
+  },
+  "breathingPractice.tmp.tmp": {},
+  "breathingPractice.series1.q1": {
+    "q": ["Take a moment of stillness to find your breath"],
+    "a": { "next": "breathingPractice.series1.q2" }
+  },
+  "breathingPractice.series1.q2": {
+    "q": ["Breathe in for 7 seconds. "],
+    "a": { "next": "breathingPractice.series1.q3" }
+  },
+  "breathingPractice.series1.q3": {
+    "q": ["Hold your breath for 5 seconds. "],
+    "a": { "next": "breathingPractice.series1.q4" }
+  },
+  "breathingPractice.series1.q4": {
+    "q": ["Now breath out for 8 seconds. "],
+    "a": { "next": "breathingPractice.series1.q5" }
+  },
+  "breathingPractice.series1.q5": {
+    "q": [
+      "Repeat, in 7, hold 5, out 8, for as long as you like. Try to be mindful and focus on your breathing. "
+    ],
+    "a": { "next": "routing.chooseModule.listAll" }
+  },
+  "positiveMode.tmp.tmp": {},
+  "validationMode.tmp.tmp": {},
+  "listeningMode.tmp.tmp": {},
+  "listeningMode.series1.q1": {
+    "q": ["What's on your mind?"],
+    "a": {
+      "freeformInput": "routing.chooseModule.listAll",
+      "waitSteps": "2",
+      "nextResponseRoute": "routing.chooseModule.listAll"
+    }
+  },
+  "guidedExercise.tmp.tmp": {},
+  "guidedExercise.yoga1.q1": {
+    "q": ["Downward dog"],
+    "a": { "next": "guidedExercise.yoga1.q2" }
+  },
+  "guidedExercise.yoga1.q2": {
+    "q": ["Child's pose"],
+    "a": { "next": "guidedExercise.yoga1.q3" }
+  },
+  "guidedExercise.yoga1.q3": {
+    "q": ["Sun salutation"],
+    "a": { "next": "guidedExercise.yoga1.q4" }
+  },
+  "guidedExercise.yoga1.q4": {
+    "q": ["Set your intentions for the day"],
+    "a": { "next": "guidedExercise.yoga1.q5" }
+  },
+  "guidedExercise.yoga1.q5": {
+    "q": ["From my heart to yours, nameste. "],
+    "a": { "next": "routing.chooseModule.listAll" }
+  },
+  "guidedExercise.pilates1.q1": {
+    "q": ["Runner's Lunge"],
+    "a": { "next": "routing.chooseModule.listAll" }
+  },
+  "guidedExercise.cardio.q1": {
+    "q": ["Let's start with 20 squats"],
+    "a": { "next": "routing.chooseModule.listAll" }
+  },
+  "guidedExercise.strength.q1": {
+    "q": [" 5 push ups"],
+    "a": { "next": "routing.chooseModule.listAll" }
+  }
+}

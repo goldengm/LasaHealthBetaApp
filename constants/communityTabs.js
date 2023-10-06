@@ -1,0 +1,26 @@
+export default communityTabs = {
+  categories: [
+    { id: "Endometriosis", title: "Endometriosis" },
+    { id: "Uterine Fibroids", title: "Uterine Fibroids" },
+    { id: "Polycystic Ovary Syndrome", title: "Polycystic Ovary Syndrome" },
+    {
+      id: "Sexually Transmitted Diseases",
+      title: "Sexually Transmitted Diseases",
+    },
+    { id: "Gastroenterology", title: "Gastroenterology" },
+    { id: "HIV", title: "HIV" },
+    { id: "Ovarian and Cervical Cancer", title: "Ovarian and Cervical Cancer" },
+    { id: "Autoimmune Diseases", title: "Autoimmune Diseases" },
+    { id: "Depression and Anxiety", title: "Depression and Anxiety" },
+    { id: "Pregnancy Issues", title: "Pregnancy Issues" },
+    { id: "Breast Cancer", title: "Breast Cancer" },
+    { id: "Heart Disease", title: "Heart Disease" },
+    { id: "Osteoporosis", title: "Osteoporosis" },
+    { id: "Chronic Pain", title: "Chronic Pain" },
+    { id: "Lupus", title: "Lupus" },
+    { id: "Multiple Sclerosis", title: "Multiple Sclerosis" },
+    { id: "Migraine Headaches", title: "Migraine Headaches" },
+    { id: "Painful Periods", title: "Painful Periods" },
+    { id: "Insomnia", title: "Insomnia" },
+  ],
+};

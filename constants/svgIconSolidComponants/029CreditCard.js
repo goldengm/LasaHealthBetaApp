@@ -1,0 +1,11 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg029Creditcard = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="M402.88 183.556H512v52.271H402.88zM0 183.556h109.12v52.271H0zM0 367.111V512h512V367.111zm160.026 67.524H35.602v-30h124.425v30zm158.186 0H193.788v-30h124.424zm158.186 0H351.974v-30h124.425v30zM402.88 265.827v33.762H109.12v-33.762H0v71.284h512v-71.284z" />
+    <Path d="M173.575 119.771H139.12v149.818h233.76V119.771h-34.455V82.425C338.425 36.976 301.449 0 256 0s-82.425 36.976-82.425 82.425zm30-37.346C203.575 53.518 227.093 30 256 30s52.425 23.518 52.425 52.425v37.346h-104.85z" />
+  </Svg>
+);
+
+export default Svg029Creditcard;

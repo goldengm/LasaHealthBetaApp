@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Assessment general tests Testing SET_AND_DELETE Data For Assessment 1`] = `
+{
+  "assessmentResults": [],
+}
+`;

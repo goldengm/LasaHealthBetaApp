@@ -1,0 +1,11 @@
+{
+  "start": {
+    "q": "How are you feeling?",
+    "Pretty good": { "q": "That's great to hear!" },
+    "Not great": {
+      "q": "I'm sorry, is anything getting you down in particular?",
+      "Not really": {},
+      "Yes": {}
+    }
+  }
+}

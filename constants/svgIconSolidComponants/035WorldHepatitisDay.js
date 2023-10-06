@@ -1,0 +1,17 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg035Worldhepatitisday = (props) => (
+  <Svg
+    height={512}
+    viewBox="0 0 510 510"
+    width={512}
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <Path d="M0 510h510V210H0zm330-105h-45v30h45v30h-75v-90h45v-30h-45v-30h75zm90-150h30v30h-30zm-60 0h30v30h-30zm0 60h90v150h-90zm-60-60h30v30h-30zm-60 0h30v30h-30zm-60 0h30v30h-30zm0 60h30v30h-30zm0 60h30v30h-30zm0 60h30v30h-30zm-60-180h30v30h-30zm0 60h30v30h-30zm0 60h30v30h-30zm0 60h30v30h-30zM60 255h30v30H60zm0 60h30v30H60zm0 60h30v30H60zm0 60h30v30H60zM390 90v45h-30V90H240v45h-30V90H90v45H60V90H0v90h510V90z" />
+    <Path d="M390 405h30v30h-30zM390 345h30v30h-30zM90 45c0-8.271 6.729-15 15-15s15 6.729 15 15v15h30V45c0-24.812-20.188-45-45-45S60 20.188 60 45v45h30zM240 45c0-8.271 6.729-15 15-15 8.272 0 15 6.729 15 15v15h30V45c0-24.812-20.186-45-45-45-24.812 0-45 20.188-45 45v45h30zM390 45c0-8.271 6.728-15 15-15s15 6.729 15 15v15h30V45c0-24.812-20.186-45-45-45s-45 20.188-45 45v45h30z" />
+  </Svg>
+);
+
+export default Svg035Worldhepatitisday;

@@ -1,0 +1,10 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg035Hourglass = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="M358.809 90.424h35.421V0H117.771v90.424h35.421v123.239L226.122 256l-72.93 42.337v123.239h-35.421V512H394.23v-90.424h-35.421V298.337L285.878 256l72.93-42.337V90.424zm-211.038-30V30H364.23v30.424zm181.038 30v49.75H183.191v-49.75zm35.42 361.152V482H147.771v-30.424zm-146.475-30L256 385.005l38.246 36.571zM328.809 315.61v97.508L256 343.497l-72.809 69.622V315.61L256 273.345zM256 238.655l-72.809-42.266v-26.216h145.617v26.216z" />
+  </Svg>
+);
+
+export default Svg035Hourglass;

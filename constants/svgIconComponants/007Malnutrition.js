@@ -1,0 +1,11 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg007Malnutrition = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="M361 272v-40.787l30-30V0H121v201.213l30 30V272H91v240h330V272zm-210-83.213V150h30v-30h-30V90h30V60h-30V30h210v30h-30v30h30v30h-30v30h30v38.787l-30 30V272H181v-53.213zM271 482v-38.787l40.606-40.606-21.213-21.213L256 415.787l-34.394-34.394-21.213 21.213L241 443.213V482H121v-60h15c24.813 0 45-20.187 45-45v-45h-30v45c0 8.271-6.729 15-15 15h-15v-90h270v90h-15c-8.271 0-15-6.729-15-15v-45h-30v45c0 24.813 20.187 45 45 45h15v60z" />
+    <Path d="M241 165c0-8.271 6.729-15 15-15s15 6.729 15 15v75h30v-75c0-24.813-20.187-45-45-45s-45 20.187-45 45v75h30z" />
+  </Svg>
+);
+
+export default Svg007Malnutrition;

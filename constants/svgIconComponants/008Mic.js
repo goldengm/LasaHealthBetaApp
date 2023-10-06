@@ -1,0 +1,16 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg008Mic = (props) => (
+  <Svg
+    height={512}
+    viewBox="0 0 510 510"
+    width={512}
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <Path d="M300 420h30v-61.509c34.192-6.968 60-37.271 60-73.491V105c0-41.355-33.645-75-75-75H195c-41.355 0-75 33.645-75 75v180c0 36.219 25.808 66.522 60 73.491V420h30v60H105v30h300v-30H300zm-105-90c-24.813 0-45-20.187-45-45v-15h30v-30h-30v-30h30v-30h-30v-30h30v-30h-30v-15c0-19.555 12.542-36.228 30-42.42V90h30V60h30v30h30V60h30v30h30V62.58c17.459 6.192 30 22.865 30 42.42v15h-30v30h30v30h-30v30h30v30h-30v30h30v15c0 24.813-20.186 45-45 45zm15 30h90v30h-90zm60 120h-30v-60h30zM450 0h30v30h-30zM480 30h30v30h-30zM420 30h30v30h-30zM450 60h30v30h-30zM30 180h30v30H30zM60 210h30v30H60zM0 210h30v30H0zM30 240h30v30H30z" />
+  </Svg>
+);
+
+export default Svg008Mic;

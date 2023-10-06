@@ -1,0 +1,17 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg007Braille = (props) => (
+  <Svg
+    height={512}
+    viewBox="0 0 510 510"
+    width={512}
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <Path d="M315.5 15c-24.73 0-46.721 11.952-60.5 30.382C241.221 26.952 219.229 15 194.5 15H0v480h510V15zM30 45h164.5c25.089 0 45.5 20.411 45.5 45.5V405H30zm450 420H30v-30h450zm-210-60V90.5c0-25.089 20.411-45.5 45.5-45.5H480v360z" />
+    <Path d="M60 90h30v30H60zM120 90h30v30h-30zM60 150h30v30H60zM180 90h30v30h-30zM180 180h30v30h-30zM60 210h30v30H60zM120 210h30v30h-30zM60 270h30v30H60zM120 270h30v30h-30zM180 255h30v30h-30zM60 330h30v30H60zM120 330h30v30h-30zM300 90h30v30h-30zM360 90h30v30h-30zM300 150h30v30h-30zM360 150h30v30h-30zM420 120h30v30h-30zM300 210h30v30h-30zM360 210h30v30h-30zM300 270h30v30h-30zM360 270h30v30h-30zM420 240h30v30h-30zM300 330h30v30h-30zM390 330h30v30h-30z" />
+  </Svg>
+);
+
+export default Svg007Braille;

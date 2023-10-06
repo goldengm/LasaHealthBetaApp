@@ -1,0 +1,10 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg047Benchpress = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="M88.337 384.141h67.065V512H88.337zM356.598 384.141h67.065V512h-67.065zM490.981 68.801V0H411.81v68.801h-40.212V24.926h-30v43.875H170.402V24.926h-30v43.875H100.19V0H21.019v68.801H0v30h21.019v68.801h79.171V98.801h40.212v198.074h-19.565c-17.949 0-32.5 14.551-32.5 32.5v24.766h335.327v-24.766c0-17.949-14.551-32.5-32.5-32.5h-19.565V98.801h40.212v68.801h79.171V98.801H512v-30zM341.598 296.875H170.402V244.81h171.196zm0-82.065H170.402V98.801h171.196z" />
+  </Svg>
+);
+
+export default Svg047Benchpress;

@@ -1,0 +1,249 @@
+import React from 'react';
+import {ScrollView, Dimensions, View} from 'react-native';
+import {Text} from 'react-native-elements';
+import {MixpanelInstance} from '../../../../../../shared/UsageAnalyticsUtils';
+import {styles, theme, Images} from '../../../../../../constants';
+import {Button} from '../../../../../../components';
+import {StatusBar} from 'expo-status-bar';
+import {connect} from 'react-redux';
+import {updateEndo101Week10ProgressAction} from '../../../../../../redux/actions/learnActions';
+import {KeyboardAvoidingView} from 'react-native';
+import ScreenTemplateWrapper from '../../../../../../shared/ScreenTemplateWrapper';
+import {getOS} from '../../../../../../shared/PlatformUtils';
+
+const iosPlatform = () => getOS() == 'ios';
+const {width} = Dimensions.get('screen');
+
+//  FIXMETUNA:  this might cause problems ignoring this warning, scrolling or windowing
+//  errors possible, watch out
+import {LogBox} from 'react-native';
+LogBox.ignoreLogs([
+  'VirtualizedLists should never be nested inside plain ScrollViews with the same orientation - use another VirtualizedList-backed container instead.',
+]);
+
+class LearnCoursePlaceholderScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.mixpanel = MixpanelInstance;
+
+    this.state = {
+      correctAnswer: false,
+      wrongAnswer: false,
+    };
+  }
+
+  setCorrectAnswer = correctAnswerP => {
+    this.setState({correctAnswer: correctAnswerP});
+  };
+
+  setWrongAnswer = wrongAnswerP => {
+    this.setState({wrongAnswer: wrongAnswerP});
+  };
+
+  render() {
+    const {navigation, route} = this.props;
+
+    return (
+      <ScreenTemplateWrapper
+        headerPadding={true}
+        width={0}
+        customImageName={Images.ui.BackgroundGradient2}>
+        <View style={{flex: 1}}>
+          <View
+            style={{
+              flex: 1,
+              alignContent: 'center',
+              alignItems: 'center',
+              marginHorizontal: theme.SIZES.BASE,
+              elevation: 2,
+            }}>
+            <View
+              style={{
+                flex: 1,
+                alignContent: 'center',
+                alignItems: 'center',
+              }}>
+              <StatusBar
+                style={{
+                  backgroundColor: theme.COLORS.TRANSPARENT,
+                  fontFamily: theme.FONTS.TEXT,
+                }}
+                backgroundColor={theme.COLORS.TRANSPARENT}
+              />
+
+              <KeyboardAvoidingView
+                style={{
+                  flex: 1,
+                }}
+                behavior="padding"
+                enabled={iosPlatform()}>
+                <ScrollView
+                  testID="pageScrollview"
+                  showsVerticalScrollIndicator={false}
+                  style={{}}>
+                  <View
+                    style={{
+                      backgroundColor: theme.COLORS.WHITE,
+                      borderRadius: theme.SIZES.HEADERRADIUS,
+                      elevation: 2,
+                      marginBottom: theme.SIZES.BASE,
+                      width: width - theme.SIZES.BASE * 2,
+                      marginTop: theme.SIZES.BASE * 0.8,
+                    }}>
+                    <View
+                      style={{
+                        paddingHorizontal: theme.SIZES.BASE,
+                      }}>
+                      <View
+                        style={{
+                          paddingHorizontal: theme.SIZES.BASE * 2,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          paddingVertical: theme.SIZES.BASE * 2,
+                        }}>
+                        <Text
+                          style={{
+                            color: theme.COLORS.TEXT1,
+                            fontSize: theme.SIZES.H5,
+                            fontWeight: '600',
+                            textAlign: 'center',
+                          }}>
+                          Possible complications
+                        </Text>
+                      </View>
+                      <View
+                        style={{
+                          flex: 1,
+                          marginHorizontal: theme.SIZES.BASE * 0.5,
+                        }}>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            width: width - theme.SIZES.BASE * 6,
+                          }}>
+                          <Text
+                            style={{
+                              fontSize: theme.SIZES.B2,
+                              marginLeft: theme.SIZES.BASE,
+                              color: theme.COLORS.PRIMARY2,
+                            }}>
+                            ●
+                          </Text>
+                          <Text
+                            style={{
+                              fontSize: theme.SIZES.B1,
+                              marginLeft: theme.SIZES.BASE * 0.5,
+                            }}>
+                            Placenta Previa. Placenta previa is when the
+                            placenta partially or completely covers the cervix
+                            instead of the top of the uterus. This is
+                            problematic because when someone goes into labor,
+                            their cervix begins to expand. The expansion of the
+                            cervix will cause the placenta to stretch out, and
+                            it could eventually break, causing harmful bleeding.
+                            Women who have endometriosis are more likely to have
+                            placenta previa. Typically, doctors are able to
+                            identify placenta previa before labor starts and
+                            will recommend a planned cesarean birth.
+                            {'\u000A'}
+                          </Text>
+                        </View>
+
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            width: width - theme.SIZES.BASE * 6,
+                          }}>
+                          <Text
+                            style={{
+                              fontSize: theme.SIZES.B2,
+                              marginLeft: theme.SIZES.BASE,
+                              color: theme.COLORS.PRIMARY2,
+                            }}>
+                            ●
+                          </Text>
+                          <Text
+                            style={{
+                              fontSize: theme.SIZES.B1,
+                              marginLeft: theme.SIZES.BASE * 0.5,
+                            }}>
+                            Cesarean Section. Cesarean sections, more commonly
+                            known as C-sections, are when a baby is born through
+                            an incision in the lower abdomen of the pregnant
+                            person. This can happen for a variety of reasons,
+                            such as prolonged labor, problems with the umbilical
+                            cord, or the position of the baby. Cesarean births
+                            may take longer than a vaginal birth or may require
+                            a longer hospital stay, but women are also less
+                            likely to have problems with their pelvic floor
+                            after labor. Some studies show that it may have a
+                            greater effect on future fertility and pregnancy.
+                            Cesarean births are higher among women with
+                            endometriosis.
+                            {'\u000A'}
+                          </Text>
+                        </View>
+
+                        <Text style={{fontSize: theme.SIZES.B1}}>
+                          Some of these complications may sound scary. However,
+                          these complications exist for all pregnant people, and
+                          having endometriosis may only slightly increase your
+                          chance of experiencing one. Many women with
+                          endometriosis have healthy pregnancies with no
+                          complications. If you have questions or are
+                          experiencing any persistent pain throughout your
+                          pregnancy, make sure to talk to a doctor.
+                        </Text>
+
+                        <View
+                          style={{
+                            paddingHorizontal: theme.SIZES.BASE * 2,
+                            alignItems: 'center',
+                            paddingVertical: theme.SIZES.BASE * 2,
+                          }}>
+                          <Button
+                            testID="nextButton"
+                            style={{
+                              ...styles.button,
+                              width: width - theme.SIZES.BASE * 4,
+                            }}
+                            titleStyle={{
+                              color: theme.COLORS.WHITE,
+                              fontFamily: theme.FONTS.TEXT,
+                            }}
+                            title="Next"
+                            onPress={() => {
+                              this.mixpanel.track('endo101_course_progress', {
+                                week_num: 10,
+                                module_num: 4,
+                              });
+                              Promise.resolve()
+                                .then(() => {
+                                  return this.props.dispatch(
+                                    updateEndo101Week10ProgressAction(4),
+                                  );
+                                })
+                                .then(() =>
+                                  navigation.navigate('Endo101Week10Screen'),
+                                );
+                            }}></Button>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                </ScrollView>
+              </KeyboardAvoidingView>
+            </View>
+          </View>
+        </View>
+      </ScreenTemplateWrapper>
+    );
+  }
+}
+
+const mapStateToProps = (state, props) => {
+  return {
+    endoCourse: state.learn.endo101Course,
+  };
+};
+export default connect(mapStateToProps)(LearnCoursePlaceholderScreen);

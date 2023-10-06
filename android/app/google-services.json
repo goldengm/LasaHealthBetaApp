@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "585100410967",
+    "project_id": "amie-health",
+    "storage_bucket": "amie-health.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585100410967:android:73f04d554c71642bd56312",
+        "android_client_info": {
+          "package_name": "com.lasahealth.appalpha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585100410967-j4g2q3spb0jld9r71pd5s8bav9kc226i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRwUEH5yiu_8V8rM7FqdSRSmQ2UhUJ9C8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585100410967-j4g2q3spb0jld9r71pd5s8bav9kc226i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

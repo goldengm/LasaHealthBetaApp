@@ -1,0 +1,10 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg001Nursinghome = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="m512 149.922-83.787-83.787H322.625L256 0l-66.625 66.135H83.787L0 149.922V452h143.787l-60 60h344.427l-60-60H512zm-96.213-53.787 45 45h-62.606l-45.333-45zM271 422V291.135h46V422zm46-160.865H195v-30h122zm-122 30h46V422h-46zm-30-90V422h-30V171.135h242V422h-30V201.135zm-60-30v170.433H30V171.135zm302 0h75v170.433h-75zm-51.403-30H156.403L256 42.271zm-259.384-45h62.939l-45.333 45H51.213zM30 371.568h75V422H30zM355.787 482H156.213l30-30h139.573zM407 422v-50.432h75V422z" />
+  </Svg>
+);
+
+export default Svg001Nursinghome;

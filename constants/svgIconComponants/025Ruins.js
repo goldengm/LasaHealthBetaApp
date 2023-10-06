@@ -1,0 +1,10 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg025Ruins = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="m391.959 184.984 51.776 10.291V90H512V60h-30V0H30v60H0v30h68.265v272H30v60H0v90h512v-90h-30v-60h-38.265v-99.128l-39.479-32.154-65.992 11.71V362h-29.529V121.725l-105.471 20.963V362h-29.529V90h164.529v112.771zm21.776-26.259-23.694-4.709-21.776 7.213V90h45.471v68.725zM60 30h392v30H60zm422 452H30v-30h452zm-30-60H60v-30h392zm-83.735-154.427 27.703-4.916 17.768 14.472V362h-45.471zm-135-100.261 45.471-9.037V362h-45.471zM143.735 362h-45.47V90h45.471v272z" />
+  </Svg>
+);
+
+export default Svg025Ruins;

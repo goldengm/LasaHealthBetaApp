@@ -1,0 +1,17 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg033Ultrasound = (props) => (
+  <Svg
+    height={512}
+    viewBox="0 0 510 510"
+    width={512}
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <Path d="M510 330V0H0v330h90v30H0v150h510V360h-90v-30zM30 300V30h450v270H90zm450 90v90H30v-90h390zm-90-30H120v-30h270z" />
+    <Path d="M332.757 75.77c-56.684 18.894-98.831 18.894-155.514 0l-15.778-5.259-36.006 162.027 9.6 5.485c73.124 42.459 166.759 42.458 239.884 0l9.599-5.485-36.007-162.027zM159.604 217.182l24.007-108.032c50.222 14.368 92.556 14.368 142.779 0l24.007 108.032c-60.463 30.648-130.33 30.648-190.793 0zM60 420h30v30H60zM120 420h30v30h-30zM180 420h30v30h-30zM270 420h180v30H270zM60 60h45v30H60zM60 120h45v30H60zM60 240h30v30H60zM420 60h30v30h-30zM420 240h30v30h-30z" />
+  </Svg>
+);
+
+export default Svg033Ultrasound;

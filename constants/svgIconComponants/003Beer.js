@@ -1,0 +1,16 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg003Beer = (props) => (
+  <Svg
+    height="512pt"
+    viewBox="0 0 512 512"
+    width="512pt"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <Path d="M482 0h-90v60h-30v30h30v69.785l-30 30V301h-30V189.64l-31-30V90h31V60h-31V0h-91v60h-30v30h30v69.785l-30 30V301h-30V189.785l-30-30V90h30V60h-30V0H30v60H0v30h30v69.785l-30 30V512h512V189.785l-30-30V90h30V60h-30zm-60 30h30v30h-30zm-30 241h30v30h-30zm-212 90v30H30v-60h452v60H332v-30zm122 30v30h-92v-30zM240 30h31v30h-31zm31 60v61h-31V90zm-39.785 91h48.715L302 202.36V301h-31v-60h-61v-38.785zM210 271h31v30h-31zM60 30h30v30H60zm30 60v61H60V90zm-38.785 91h47.57L120 202.215V301H90v-60H30v-38.785zM30 271h30v30H30zm452 211H30v-61h150v30h152v-30h150zm-30-181v-60h-60v-38.785L413.215 181h47.57L482 202.215V301zm0-150h-30V90h30zm0 0" />
+  </Svg>
+);
+
+export default Svg003Beer;

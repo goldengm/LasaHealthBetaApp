@@ -1,0 +1,10 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg045Testtube = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="M467 182h-46V30h30V0H271v30h30v152h-90V30h30V0H61v30h30v152H45c-24.813 0-45 20.187-45 45v285h512V227c0-24.813-20.187-45-45-45zM391 30v62h-60V30zm-60 92h60v60h-60zm0 90h60v120c0 16.542-13.458 30-30 30s-30-13.458-30-30zM121 30h60v152h-60zm0 242h60v60c0 16.542-13.458 30-30 30s-30-13.458-30-30zm60-30h-60v-30h60zM45 212h46v120c0 33.084 26.916 60 60 60s60-26.916 60-60V212h90v120c0 33.084 26.916 60 60 60s60-26.916 60-60V212h46c8.271 0 15 6.729 15 15v195H30V227c0-8.271 6.729-15 15-15zM30 482v-30h452v30z" />
+  </Svg>
+);
+
+export default Svg045Testtube;

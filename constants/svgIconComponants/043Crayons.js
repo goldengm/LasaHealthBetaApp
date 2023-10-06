@@ -1,0 +1,17 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg043Crayons = (props) => (
+  <Svg
+    height="512pt"
+    viewBox="0 0 512 512"
+    width="512pt"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <Path d="M0 0v512h512V0zm68.785 90h373.356L482 50.793V302h-31v-79.434L416.812 120h-51.625L346 177.566 326.812 120h-51.625L256 177.566 236.812 120h-51.625L166 177.566 146.812 120H94.188L60 222.566V302H30V51.215zm-17.57-60h409.144l-30.5 30H81.215zM90 240h61v62H90zm5.813-30 20-60h9.374l20 60zM181 240h60v62h-60zm5.813-30 20-60h8.375l20 60zM271 240h60v62h-60zm5.813-30 20-60h8.375l20 60zM361 240h60v62h-60zm5.813-30 20-60h8.375l20 60zM30 332h452v68.738L399.836 482H111.215L30 400.785zm0 111.215L68.785 482H30zM442.496 482 482 442.934V482zm0 0" />
+    <Path d="M331 452v-90H181v90zm-30-30h-30v-30h30zm-90-30h30v30h-30zm0 0" />
+  </Svg>
+);
+
+export default Svg043Crayons;

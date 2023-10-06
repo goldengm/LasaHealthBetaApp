@@ -1,0 +1,11 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg022Presentation = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="M391 466h-64.195l-9.999-30H195.194l-9.999 30H121v30h270zM181 137.518v46.983l40.051-24.033c-10.492-11.422-24.291-19.738-40.051-22.95zM241 211c0-8.73-1.785-16.99-4.541-24.789L181 219.496v64.986c34.191-6.969 60-37.266 60-73.482zM151 284.482V137.518c-34.191 6.969-60 37.266-60 73.482s25.809 66.513 60 73.482z" />
+    <Path d="M0 406h512V16H0zm361-300h90v30h-90zm0 60h90v30h-90zm0 60h90v30h-90zm0 60h90v30h-90zm-60-180h30v30h-30zm0 60h30v30h-30zm0 60h30v30h-30zm0 60h30v30h-30zM166 106c57.891 0 105 47.109 105 105s-47.109 105-105 105S61 268.891 61 211s47.109-105 105-105z" />
+  </Svg>
+);
+
+export default Svg022Presentation;

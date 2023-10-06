@@ -1,0 +1,10 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg002Barque = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="m391 321.728-45-22.5v59.996l45 22.498zM380.757 410.146 256 347.772l-124.757 62.374L203.28 512h105.44zM196 344.2l45-22.5v-60l-45 22.5zM316 344.2v-60l-45-22.5v60zM121 321.728v59.994l45-22.498v-59.996zM241 261.7l15-7.5 15 7.5V241h150v-30H91v30h150zM136 181h240c0-9.12 11.058-21.92 20.543-30H421v-30H91v30h24.457c9.485 8.08 20.543 20.88 20.543 30zM166 91h180c0-9.12 11.058-22.92 20.543-31H391V30H271V0h-30v30H121v30h24.457C154.942 68.08 166 81.88 166 91z" />
+  </Svg>
+);
+
+export default Svg002Barque;

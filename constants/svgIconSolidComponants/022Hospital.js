@@ -1,0 +1,11 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg022Hospital = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="M58 423.201h63.753v-82.534H91v-30h30.753v-33.334H91v-30h30.753V214H91v-30h30.753v-69.333H28v308.534zM390.247 184H421v30h-30.753v33.333H421v30h-30.753v33.334H421v30h-30.753v82.534H484V114.667h-93.753zM237.5 377h37v46.201h-37z" />
+    <Path d="M359.494 423.201h.753V89H151.753v334.201H207.5V347h97v76.201zm-50.911-166.492h-30V227h30zm-75.166 58.718h-30v-29.71h30zm0-58.718h-30V227h30zM241 199v-18.5h-18.5v-30H241V132h30v18.5h18.5v30H271V199zm37.583 116.427v-29.71h30v29.71zM1 453.201h510V512H1zM336 59V18h-65V0h-30v18h-65v41z" />
+  </Svg>
+);
+
+export default Svg022Hospital;

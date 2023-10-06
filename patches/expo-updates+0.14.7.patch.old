@@ -1,0 +1,64 @@
+diff --git a/node_modules/expo-updates/android/proguard-rules.pro b/node_modules/expo-updates/android/proguard-rules.pro
+index 904153f..5026e1c 100644
+--- a/node_modules/expo-updates/android/proguard-rules.pro
++++ b/node_modules/expo-updates/android/proguard-rules.pro
+@@ -3,5 +3,5 @@
+ }
+ 
+ -keepclassmembers class com.facebook.react.devsupport.DisabledDevSupportManager {
+-  private final com.facebook.react.bridge.DefaultNativeModuleCallExceptionHandler mDefaultNativeModuleCallExceptionHandler;
++  private final com.facebook.react.bridge.DefaultJSExceptionHandler mDefaultJSExceptionHandler;
+ }
+diff --git a/node_modules/expo-updates/android/src/main/java/expo/modules/updates/errorrecovery/ErrorRecovery.kt b/node_modules/expo-updates/android/src/main/java/expo/modules/updates/errorrecovery/ErrorRecovery.kt
+index b00c9ad..5c17690 100644
+--- a/node_modules/expo-updates/android/src/main/java/expo/modules/updates/errorrecovery/ErrorRecovery.kt
++++ b/node_modules/expo-updates/android/src/main/java/expo/modules/updates/errorrecovery/ErrorRecovery.kt
+@@ -4,7 +4,7 @@ import android.os.Handler
+ import android.os.HandlerThread
+ import android.util.Log
+ import com.facebook.react.ReactInstanceManager
+-import com.facebook.react.bridge.DefaultNativeModuleCallExceptionHandler
++import com.facebook.react.bridge.DefaultJSExceptionHandler
+ import com.facebook.react.bridge.ReactMarker
+ import com.facebook.react.bridge.ReactMarkerConstants
+ import com.facebook.react.devsupport.DisabledDevSupportManager
+@@ -16,7 +16,7 @@ class ErrorRecovery {
+   internal lateinit var handler: Handler
+ 
+   private var weakReactInstanceManager: WeakReference<ReactInstanceManager>? = null
+-  private var previousExceptionHandler: DefaultNativeModuleCallExceptionHandler? = null
++  private var previousExceptionHandler: DefaultJSExceptionHandler? = null
+ 
+   fun initialize(delegate: ErrorRecoveryDelegate) {
+     if (!::handler.isInitialized) {
+@@ -64,17 +64,17 @@ class ErrorRecovery {
+     }
+ 
+     val devSupportManager = reactInstanceManager.devSupportManager as DisabledDevSupportManager
+-    val defaultNativeModuleCallExceptionHandler = object : DefaultNativeModuleCallExceptionHandler() {
++    val defaultJSExceptionHandler = object : DefaultJSExceptionHandler() {
+       override fun handleException(e: Exception?) {
+         this@ErrorRecovery.handleException(e!!)
+       }
+     }
+     val devSupportManagerClass = devSupportManager.javaClass
+-    previousExceptionHandler = devSupportManagerClass.getDeclaredField("mDefaultNativeModuleCallExceptionHandler").let { field ->
++    previousExceptionHandler = devSupportManagerClass.getDeclaredField("mDefaultJSExceptionHandler").let { field ->
+       field.isAccessible = true
+       val previousValue = field[devSupportManager]
+-      field[devSupportManager] = defaultNativeModuleCallExceptionHandler
+-      return@let previousValue as DefaultNativeModuleCallExceptionHandler
++      field[devSupportManager] = defaultJSExceptionHandler
++      return@let previousValue as DefaultJSExceptionHandler
+     }
+     weakReactInstanceManager = WeakReference(reactInstanceManager)
+   }
+@@ -91,7 +91,7 @@ class ErrorRecovery {
+ 
+       val devSupportManager = reactInstanceManager.devSupportManager as DisabledDevSupportManager
+       val devSupportManagerClass = devSupportManager.javaClass
+-      devSupportManagerClass.getDeclaredField("mDefaultNativeModuleCallExceptionHandler").let { field ->
++      devSupportManagerClass.getDeclaredField("mDefaultJSExceptionHandler").let { field ->
+         field.isAccessible = true
+         field[devSupportManager] = previousExceptionHandler
+       }

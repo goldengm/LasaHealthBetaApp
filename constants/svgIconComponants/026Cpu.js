@@ -1,0 +1,17 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg026Cpu = (props) => (
+  <Svg
+    height={512}
+    viewBox="0 0 510 510"
+    width={512}
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <Path d="M465 240v-30h45v-30h-45v-30h-60v-45h-45V45h-30V0h-30v45h-30v60h-30V45h-30V0h-30v45h-30v60h-45v45H45v30H0v30h45v30h60v30H45v30H0v30h45v30h60v45h45v60h30v45h30v-45h30v-60h30v60h30v45h30v-45h30v-60h45v-45h60v-30h45v-30h-45v-30h-60v-30zm-360 90H75v-30h30zm0-120H75v-30h30zm330-30v30h-30v-30zM300 75h30v30h-30zm-120 0h30v30h-30zm30 360h-30v-30h30zm120 0h-30v-30h30zm105-135v30h-30v-30zm-60 75H135V135h240z" />
+    <Path d="m204.307 299.452 19.167-39.171-26.948-13.185-26.361 53.874L187.722 330H240v-30h-35.361zM298.475 216.441 273.304 165h-36.608l-25.17 51.439 26.948 13.186L255 195.85l16.527 33.777zM286.527 260.283l19.166 39.169-.332.548H270v30h52.278l17.557-29.03-26.36-53.872z" />
+  </Svg>
+);
+
+export default Svg026Cpu;

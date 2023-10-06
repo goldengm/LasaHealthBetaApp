@@ -1,0 +1,1189 @@
+// Newest feedback
+
+
+
+
+
+
+Universal UI:
+clicking away always exits whatever is currently focused
+All of the clickable areas felt wayy too small... mostly the clickable areas at the top of the screen
+NEED TO FIGURE OUT THE INVISIBLE MENU GLITCH - It affects all iOS, and seems like it also effects the new version of expo
+
+
+
+
+
+Track symptoms:
+make notes accesible after the they're submitted..... 
+
+
+
+
+
+
+
+If anything isn't black or a shade of black, it's assumed to be clickable.
+They seemed like they really wanted to click the pregnancy color boxes.
+The calender should be draggable to open. 
+
+
+
+
+
+
+
+
+
+Connect Match with an Amie:
+could add exclusion zone, to matching.... so that you don't accidently match with someone close to you.
+
+
+
+
+
+
+
+
+
+
+
+
+              
+//  example of using redux thunk to create sequential actions
+
+
+  updateLogStatePart1 = (key, value) => (dispatch) => {
+    dispatch(
+      addTrackingLogFromStagingAction(
+        this.props.trackingLogStaging.timestamp,
+        this.props.trackingLogStaging.symptoms
+      )
+    );
+    return Promise.resolve();
+  };
+
+
+  updateLogStatePart2 = (key, value) => (dispatch) => {
+    dispatch(
+      regenerateMenstrualCycleAction(
+        this.getCurrentTimestampMinutes(),
+        this.props.trackingLog,
+        this.props.userProfile
+      )
+    );
+    return Promise.resolve();
+  };
+
+
+  onSubmitSymptoms = () => {
+    this.props
+      .dispatch(this.updateLogStatePart1(1, 2))
+      .then(() => {
+        console.log("THUNK PART 2!!!");
+
+        this.props.dispatch(this.updateLogStatePart2(1, 2));
+      })
+      .then(() => {
+        console.log("THUNK PART 3!!!");
+
+        this.props.navigation.navigate("Track");
+      })
+  };
+
+  getCurrentTimestampMinutes = () => {
+    return Math.floor(Date.now() / 60000.0);
+  };
+
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              <Text bold size={16} style={styles.title}>
+                CalendarList
+              </Text>
+              {/* <CalendarStrip scrollable scrollerPaging /> */}
+              <CalendarList
+                // Enable horizontal scrolling, default = false
+                horizontal={true}
+                // Enable paging on horizontal, default = false
+                pagingEnabled={true}
+                // Set custom calendarWidth.
+                // calendarWidth={320}
+              />
+
+              <Text bold size={16} style={styles.title}>
+                Agenda
+              </Text>
+              <Agenda
+                // The list of items that have to be displayed in agenda. If you want to render item as empty date
+                // the value of date key has to be an empty array []. If there exists no value for date key it is
+                // considered that the date in question is not yet loaded
+                items={{
+                  "2021-09-22": [{ name: "item 1 - any js object" }],
+                  "2021-09-23": [
+                    { name: "item 2 - any js object", height: 80 },
+                  ],
+                  "2021-09-24": [],
+                  "2021-09-25": [
+                    { name: "item 3 - any js object" },
+                    { name: "any js object" },
+                  ]}}
+                // Callback that gets called when items for a certain month should be loaded (month became visible)
+                loadItemsForMonth={(month) => {
+                  // console.log("trigger items loading");
+                }}
+                // Callback that fires when the calendar is opened or closed
+                onCalendarToggled={(calendarOpened) => {
+                  // console.log(calendarOpened);
+                }}
+                // Callback that gets called on day press
+                onDayPress={(day) => {
+                  // console.log("day pressed");
+                }}
+                // Callback that gets called when day changes while scrolling agenda list
+                onDayChange={(day) => {
+                  // console.log("day changed");
+                }}
+                // Initially selected day
+                selected={"2021-09-21"}
+                // // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
+                // minDate={"2021-09-10"}
+                // // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
+                // maxDate={"2021-09-30"}
+                // Max amount of months allowed to scroll to the past. Default = 50
+                pastScrollRange={50}
+                // Max amount of months allowed to scroll to the future. Default = 50
+                futureScrollRange={50}
+                // Specify how each item should be rendered in agenda
+                // renderItem={(item, firstItemInDay) => {
+                //   return <View />;
+                // }}
+                //  //  ignore this one, probably broken
+                // loadItemsForMonth={() => {
+                //   null;
+                // }}
+                items={null} //  should disable agenda dropdown
+                // horizontal={true}
+                // Enable paging on horizontal, default = false
+                // pagingEnabled={true}
+                // // Specify how each date should be rendered. day can be undefined if the item is not first in that day
+                // renderDay={(day, item) => {
+                //   return <View />;
+                // }}
+                // // Specify how empty date content with no items should be rendered
+                // renderEmptyDate={() => {
+                //   return <View />;
+                // }}
+                // // Specify how agenda knob should look like
+                // renderKnob={() => {
+                //   return <View />;
+                // }}
+                // // Specify what should be rendered instead of ActivityIndicator
+                // renderEmptyData={() => {
+                //   return <View />;
+                // }}
+                // Specify your item comparison function for increased performance
+                rowHasChanged={(r1, r2) => {
+                  return r1.text !== r2.text;
+                }}
+                // Hide knob button. Default = false
+                // hideKnob={true}
+                // When `true` and `hideKnob` prop is `false`, the knob will always be visible and the user will be able to drag the knob up and close the calendar. Default = false
+                showClosingKnob={true}
+                // By default, agenda dates are marked if they have at least one item, but you can override this if needed
+                markedDates={{
+                  "2021-09-16": { selected: true, marked: true },
+                  "2021-09-17": { marked: true },
+                  "2021-09-18": { disabled: true }}}
+                // If disabledByDefault={true} dates flagged as not disabled will be enabled. Default = false
+                // disabledByDefault={true}
+                // If provided, a standard RefreshControl will be added for "Pull to Refresh" functionality. Make sure to also set the refreshing prop correctly
+                onRefresh={() => // console.log("refreshing...")}
+                // Set this true while waiting for new data from a refresh
+                refreshing={false}
+                // Add a custom RefreshControl component, used to provide pull-to-refresh functionality for the ScrollView
+                // refreshControl={null}
+                // Agenda theme
+                theme={{
+                  agendaDayTextColor: "yellow",
+                  agendaDayNumColor: "green",
+                  agendaTodayColor: "red",
+                  agendaKnobColor: "blue"}}
+                // Agenda container style
+                // style={{ height: 400 }}
+              />
+
+              <Text bold size={16} style={styles.title}>
+                Calendar
+              </Text>
+              <Calendar
+                // Initially visible month. Default = Date()
+                // current={"2012-03-01"}
+                // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
+                // minDate={"2012-05-10"}
+                // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
+                // maxDate={"2012-05-30"}
+                // Handler which gets executed on day press. Default = undefined
+                onDayPress={(day) => {
+                  // console.log("selected day", day);
+                }}
+                // Handler which gets executed on day long press. Default = undefined
+                onDayLongPress={(day) => {
+                  // console.log("selected day", day);
+                }}
+                // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
+                // monthFormat={"yyyy MM"}
+                // Handler which gets executed when visible month changes in calendar. Default = undefined
+                onMonthChange={(month) => {
+                  // console.log("month changed", month);
+                }}
+                // Hide month navigation arrows. Default = false
+                // hideArrows={true}
+                // Replace default arrows with custom ones (direction can be 'left' or 'right')
+                // renderArrow={(direction) => <Arrow />}
+                // Do not show days of other months in month page. Default = false
+                // hideExtraDays={true}
+                // If hideArrows = false and hideExtraDays = false do not switch month when tapping on greyed out
+                // day from another month that is visible in calendar page. Default = false
+                // disableMonthChange={true}
+                // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday
+                firstDay={1}
+                // Hide day names. Default = false
+                // hideDayNames={true}
+                // Show week numbers to the left. Default = false
+                // showWeekNumbers={true}
+                // Handler which gets executed when press arrow icon left. It receive a callback can go back month
+                onPressArrowLeft={(subtractMonth) => subtractMonth()}
+                // Handler which gets executed when press arrow icon right. It receive a callback can go next month
+                onPressArrowRight={(addMonth) => addMonth()}
+                // Disable left arrow. Default = false
+                // disableArrowLeft={true}
+                // Disable right arrow. Default = false
+                // disableArrowRight={true}
+                // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
+                disableAllTouchEventsForDisabledDays={true}
+                // Replace default month and year title with custom one. the function receive a date as parameter
+                // renderHeader={(date) => {
+                //   /*Return JSX*/
+                // }}
+                // Enable the option to swipe between months. Default = false
+                enableSwipeMonths={true}
+                markingType={"period"}
+                markedDates={{
+                  "2021-09-20": { textColor: "green" },
+                  "2021-09-22": { startingDay: true, color: "green" },
+                  "2021-09-23": {
+                    selected: true,
+                    endingDay: true,
+                    color: "green",
+                    textColor: "gray",
+                  },
+                  "2021-09-04": {
+                    disabled: true,
+                    startingDay: true,
+                    color: "green",
+                    endingDay: true,
+                  }}}
+              />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///  calender strip stuff
+// @ts-nocheck
+import invoke from "lodash/invoke";
+import PropTypes from "prop-types";
+import XDate from "xdate";
+import memoize from "memoize-one";
+
+import React, { Component } from "react";
+import {
+  Text,
+  View,
+  Dimensions,
+  Animated,
+  ViewStyle,
+  LayoutChangeEvent,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+  StyleSheet,
+} from "react-native";
+
+//// @ts-expect-error
+import { extractComponentProps } from "react-native-calendars/src/component-updater";
+//// @ts-expect-error
+import {
+  parseDate,
+  xdateToData,
+  toMarkingFormat,
+} from "react-native-calendars/src/interface";
+//// @ts-expect-error
+import {
+  weekDayNames,
+  sameDate,
+  sameMonth,
+} from "react-native-calendars/src/dateutils";
+//// @ts-expect-error
+import { AGENDA_CALENDAR_KNOB } from "react-native-calendars/src/testIDs";
+//// @ts-expect-error
+import { VelocityTracker } from "react-native-calendars/src/input";
+import { DateData } from "react-native-calendars/src/types";
+import styleConstructor from "react-native-calendars/src/agenda/style";
+import CalendarList, {
+  CalendarListProps,
+} from "react-native-calendars/src/calendar-list";
+import { Block } from "galio-framework";
+import { ThemeProvider } from 'react-native-elements';
+
+const HEADER_HEIGHT = 104;
+const KNOB_HEIGHT = 24;
+
+export type AgendaProps = CalendarListProps & {
+  /** callback that fires when the calendar is opened or closed */
+  onCalendarToggled?: (enabled: boolean) => void;
+  /** callback that gets called on day press */
+  onDayPress?: (data: DateData) => void;
+  /** callback that gets called when day changes while scrolling agenda list */
+  onDayChange?: (data: any) => void;
+  /** specify how agenda knob should look like */
+  renderKnob?: () => JSX.Element;
+  /** initially selected day */
+  selected: boolean; //TODO: Should be renamed 'selectedDay'
+  /** Hide knob button. Default = false */
+  hideKnob: boolean;
+  /** When `true` and `hideKnob` prop is `false`, the knob will always be visible and the user will be able to drag the knob up and close the calendar. Default = false */
+  showClosingKnob: boolean;
+};
+
+type AgendaState = {
+  scrollY: Animated.Value;
+  calendarIsReady: boolean;
+  calendarScrollable: boolean;
+  selectedDay: XDate;
+  topDay: XDate;
+};
+
+/**
+ * @description: Agenda component
+ * @extends: CalendarList
+ * @extendslink: docs/CalendarList
+ * @example: https://github.com/wix/react-native-calendars/blob/master/example/src/screens/agenda.js
+ * @gif: https://github.com/wix/react-native-calendars/blob/master/demo/agenda.gif
+ */
+export default class CalenderStrip extends Component<AgendaProps, AgendaState> {
+  static displayName = "Agenda";
+
+  static propTypes = {
+    ...CalendarList.propTypes,
+    /** agenda container style */
+    style: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.array,
+      PropTypes.number,
+    ]),
+    /** callback that fires when the calendar is opened or closed */
+    onCalendarToggled: PropTypes.func,
+    /** callback that gets called on day press */
+    onDayPress: PropTypes.func,
+    /** callback that gets called when day changes while scrolling agenda list */
+    onDayChange: PropTypes.func,
+    /** specify how agenda knob should look like */
+    renderKnob: PropTypes.func,
+    /** initially selected day */
+    selected: PropTypes.any, //TODO: Should be renamed 'selectedDay'
+    /** Hide knob button. Default = false */
+    hideKnob: PropTypes.bool,
+    /** When `true` and `hideKnob` prop is `false`, the knob will always be visible and the user will be able to drag the knob up and close the calendar. Default = false */
+    showClosingKnob: PropTypes.bool,
+  };
+
+  private style: { [key: string]: ViewStyle };
+  private viewHeight: number;
+  private viewWidth: number;
+  private scrollTimeout: any;
+  private headerState: string;
+  private currentMonth: XDate;
+  private knobTracker: any;
+  private _isMounted: boolean | undefined;
+  private scrollPad: React.RefObject<any> = React.createRef();
+  private calendar: React.RefObject<CalendarList> = React.createRef();
+  private knob: React.RefObject<any> = React.createRef();
+
+  constructor(props: AgendaProps) {
+    super(props);
+
+    this.style = styleConstructor(props.theme);
+
+    const windowSize = Dimensions.get("window");
+    this.viewHeight = windowSize.height;
+    this.viewWidth = windowSize.width;
+
+    this.scrollTimeout = undefined;
+    this.headerState = "idle";
+
+    this.state = {
+      scrollY: new Animated.Value(0),
+      calendarIsReady: false,
+      calendarScrollable: false,
+      selectedDay: parseDate(props.selected) || new XDate(true),
+      topDay: parseDate(props.selected) || new XDate(true),
+    };
+
+    this.currentMonth = this.state.selectedDay.clone();
+
+    this.knobTracker = new VelocityTracker();
+    this.state.scrollY.addListener(({ value }) => this.knobTracker.add(value));
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+    this.state.scrollY.removeAllListeners();
+  }
+
+  componentDidUpdate(prevProps: AgendaProps) {
+    if (
+      this.props.selected &&
+      !sameDate(parseDate(this.props.selected), parseDate(prevProps.selected))
+    ) {
+      this.setState({ selectedDay: parseDate(this.props.selected) });
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps: AgendaProps) {
+    return null;
+  }
+
+  calendarOffset() {
+    return 96 - this.viewHeight / 2;
+  }
+
+  initialScrollPadPosition = () => {
+    return Math.max(0, this.viewHeight - HEADER_HEIGHT);
+  };
+
+  setScrollPadPosition = (y: number, animated: boolean) => {
+    if (this.scrollPad?.current?.scrollTo) {
+      this.scrollPad.current.scrollTo({ x: 0, y, animated });
+    } else {
+      // Support for RN O.61 (Expo 37)
+      this.scrollPad?.current?.getNode().scrollTo({ x: 0, y, animated });
+    }
+  };
+
+  toggleCalendarPosition = (open: boolean) => {
+    const maxY = this.initialScrollPadPosition();
+    this.setScrollPadPosition(open ? 0 : maxY, true);
+    this.enableCalendarScrolling(open);
+  };
+
+  enableCalendarScrolling(enable = true) {
+    this.setState({
+      calendarScrollable: enable,
+    });
+
+    invoke(this.props, "onCalendarToggled", enable);
+
+    // Enlarge calendarOffset here as a workaround on iOS to force repaint.
+    // Otherwise the month after current one or before current one remains invisible.
+    // The problem is caused by overflow: 'hidden' style, which we need for dragging
+    // to be performant.
+    // Another working solution for this bug would be to set removeClippedSubviews={false}
+    // in CalendarList listView, but that might impact performance when scrolling
+    // month list in expanded CalendarList.
+    // Further info https://github.com/facebook/react-native/issues/1831
+    this.calendar?.current?.scrollToDay(
+      this.state.selectedDay,
+      this.calendarOffset() + 1,
+      true
+    );
+  }
+
+  chooseDayFromCalendar = (d: any) => {
+    this.chooseDay(d, !this.state.calendarScrollable);
+  };
+
+  chooseDay(d: any, optimisticScroll: boolean) {
+    const day = parseDate(d);
+
+    this.setState({
+      calendarScrollable: false,
+      selectedDay: day.clone(),
+    });
+
+    invoke(this.props, "onCalendarToggled", false);
+
+    if (!optimisticScroll) {
+      this.setState({
+        topDay: day.clone(),
+      });
+    }
+
+    this.setScrollPadPosition(this.initialScrollPadPosition(), true);
+    this.calendar?.current?.scrollToDay(day, this.calendarOffset(), true);
+
+    // invoke(this.props, "loadItemsForMonth", xdateToData(day));
+    invoke(this.props, "onDayPress", xdateToData(day));
+  }
+
+  generateMarkings = memoize((selectedDay, markedDates, items = {}) => {
+    if (!markedDates) {
+      markedDates = {};
+      Object.keys(items).forEach((key) => {
+        if (items[key] && items[key].length) {
+          markedDates[key] = { marked: true };
+        }
+      });
+    }
+
+    const key = toMarkingFormat(selectedDay);
+    return {
+      ...markedDates,
+      [key]: { ...(markedDates[key] || {}), ...{ selected: true } },
+    };
+  });
+
+  onScrollPadLayout = () => {
+    // When user touches knob, the actual component that receives touch events is a ScrollView.
+    // It needs to be scrolled to the bottom, so that when user moves finger downwards,
+    // scroll position actually changes (it would stay at 0, when scrolled to the top).
+    this.setScrollPadPosition(this.initialScrollPadPosition(), false);
+    // delay rendering calendar in full height because otherwise it still flickers sometimes
+    setTimeout(() => this.setState({ calendarIsReady: true }), 0);
+  };
+
+  onCalendarListLayout = () => {
+    this.calendar?.current?.scrollToDay(
+      this.state.selectedDay.clone(),
+      this.calendarOffset(),
+      false
+    );
+  };
+
+  onLayout = (event: LayoutChangeEvent) => {
+    this.viewHeight = event.nativeEvent.layout.height;
+    this.viewWidth = event.nativeEvent.layout.width;
+    this.forceUpdate();
+  };
+
+  onTouchStart = () => {
+    this.headerState = "touched";
+    this.knob?.current?.setNativeProps({ style: { opacity: 0.5 } });
+  };
+
+  onTouchEnd = () => {
+    this.knob?.current?.setNativeProps({ style: { opacity: 1 } });
+
+    if (this.headerState === "touched") {
+      const isOpen = this.state.calendarScrollable;
+      this.toggleCalendarPosition(!isOpen);
+    }
+
+    this.headerState = "idle";
+  };
+
+  // onStartDrag = () => {
+  //   this.headerState = "dragged";
+  //   this.knobTracker.reset();
+  // };
+
+  // onSnapAfterDrag = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+  //   // on Android onTouchEnd is not called if dragging was started
+  //   this.onTouchEnd();
+  //   const currentY = e.nativeEvent.contentOffset.y;
+  //   this.knobTracker.add(currentY);
+  //   const projectedY = currentY + this.knobTracker.estimateSpeed() * 250; /*ms*/
+  //   const maxY = this.initialScrollPadPosition();
+  //   const snapY = projectedY > maxY / 2 ? maxY : 0;
+  //   this.setScrollPadPosition(snapY, true);
+
+  //   this.enableCalendarScrolling(snapY === 0);
+  // };
+
+  onVisibleMonthsChange = (months: DateData[]) => {
+    invoke(this.props, "onVisibleMonthsChange", months);
+  };
+
+  onDayChange = (day: any) => {
+    const newDate = parseDate(day);
+    const withAnimation = sameMonth(newDate, this.state.selectedDay);
+
+    this.calendar?.current?.scrollToDay(
+      day,
+      this.calendarOffset(),
+      withAnimation
+    );
+    this.setState({
+      selectedDay: newDate,
+    });
+
+    invoke(this.props, "onDayChange", xdateToData(newDate));
+  };
+
+  renderCalendarList() {
+    const { markedDates } = this.props;
+
+    // const { markedDates, items } = this.props;
+    const shouldHideExtraDays = this.state.calendarScrollable
+      ? this.props.hideExtraDays
+      : false;
+    const calendarListProps = extractComponentProps(CalendarList, this.props);
+
+    return (
+      <CalendarList
+        {...calendarListProps}
+        ref={this.calendar}
+        current={this.currentMonth}
+        markedDates={this.generateMarkings(
+          this.state.selectedDay,
+          markedDates
+          // items
+        )}
+        calendarWidth={this.viewWidth}
+        scrollEnabled={this.state.calendarScrollable}
+        hideExtraDays={shouldHideExtraDays}
+        onLayout={this.onCalendarListLayout}
+        onDayPress={this.chooseDayFromCalendar}
+        onVisibleMonthsChange={this.onVisibleMonthsChange}
+      />
+    );
+  }
+
+  renderKnob() {
+    const { showClosingKnob, hideKnob, renderKnob } = this.props;
+    let knob: JSX.Element | null = <View style={styles.knobContainer} />;
+
+    if (!hideKnob) {
+      const knobView = renderKnob ? renderKnob() : <View style={styles.knob} />;
+      knob =
+        !this.state.calendarScrollable || showClosingKnob ? (
+          <View style={styles.knobContainer}>
+            <View ref={this.knob}>{knobView}</View>
+          </View>
+        ) : null;
+    }
+    return knob;
+  }
+
+  // renderWeekDaysNames = memoize((weekDaysNames: string[]) => {
+  //   return weekDaysNames.map((day, index) => (
+  //     <Text
+  //       allowFontScaling={false}
+  //       key={day + index}
+  //       style={styles.weekday}
+  //       numberOfLines={1}
+  //     >
+  //       {day}
+  //     </Text>
+  //   ));
+  // });
+
+  // renderWeekNumbersSpace = () => {
+  //   return this.props.showWeekNumbers && <View style={styles.weekday} />;
+  // };
+
+  render() {
+    const { firstDay, hideKnob, style, testID } = this.props;
+    const weekDaysNames = weekDayNames(firstDay);
+    const agendaHeight = this.initialScrollPadPosition();
+    let weekdaysStyle = [
+      styles.weekdays,
+      {
+        opacity: this.state.scrollY.interpolate({
+          inputRange: [agendaHeight - HEADER_HEIGHT, agendaHeight],
+          outputRange: [0, 1],
+          extrapolate: "clamp",
+        }),
+        transform: [
+          {
+            translateY: this.state.scrollY.interpolate({
+              inputRange: [
+                Math.max(0, agendaHeight - HEADER_HEIGHT),
+                agendaHeight,
+              ],
+              outputRange: [-HEADER_HEIGHT, 0],
+              extrapolate: "clamp",
+            }),
+          },
+        ],
+      },
+    ];
+    const headerTranslate = this.state.scrollY.interpolate({
+      inputRange: [0, agendaHeight],
+      outputRange: [agendaHeight, 0],
+      extrapolate: "clamp",
+    });
+    const contentTranslate = this.state.scrollY.interpolate({
+      inputRange: [0, agendaHeight],
+      outputRange: [0, agendaHeight / 2],
+      extrapolate: "clamp",
+    });
+    let headerStyle = [
+      styles.header,
+      {
+        bottom: agendaHeight,
+        transform: [{ translateY: headerTranslate }],
+      },
+    ];
+
+    if (!this.state.calendarIsReady) {
+      // limit header height until everything is setup for calendar dragging
+      headerStyle.push({ height: 0 });
+      // fill header with appStyle.calendarBackground background to reduce flickering
+      weekdaysStyle.push({ height: HEADER_HEIGHT });
+    }
+
+    const openCalendarScrollPadPosition =
+      !hideKnob && this.state.calendarScrollable && this.props.showClosingKnob
+        ? agendaHeight + HEADER_HEIGHT
+        : 0;
+    const shouldAllowDragging = !hideKnob && !this.state.calendarScrollable;
+    const scrollPadPosition =
+      (shouldAllowDragging ? HEADER_HEIGHT : openCalendarScrollPadPosition) -
+      KNOB_HEIGHT;
+    const scrollPadStyle = {
+      height: KNOB_HEIGHT,
+      top: scrollPadPosition,
+      left: (this.viewWidth - 80) / 2,
+    };
+
+    return (
+      <Block
+        flex={1}
+        testID={testID}
+        onLayout={this.onLayout}
+        style={[style, styles.container, { height: 200 }]}
+      >
+        <Animated.View style={headerStyle}>
+          <Animated.View
+            style={[
+              styles.animatedContainer,
+              { transform: [{ translateY: contentTranslate }] },
+            ]}
+          >
+            {this.renderCalendarList()}
+          </Animated.View>
+          {this.renderKnob()}
+        </Animated.View>
+        <Animated.ScrollView
+          ref={this.scrollPad}
+          style={[{ flex: 1 }, styles.scrollPadStyle, scrollPadStyle]}
+          overScrollMode="never"
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          scrollEventThrottle={8}
+          scrollsToTop={false}
+          onTouchStart={this.onTouchStart}
+          onTouchEnd={this.onTouchEnd}
+          // onScrollBeginDrag={this.onStartDrag}
+          // onScrollEndDrag={this.onSnapAfterDrag}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
+            { useNativeDriver: true }
+          )}
+        >
+          <Block
+            testID={AGENDA_CALENDAR_KNOB}
+            style={{ height: agendaHeight + KNOB_HEIGHT }}
+            onLayout={this.onScrollPadLayout}
+          />
+        </Animated.ScrollView>
+      </Block>
+
+      // <View
+      //   flex
+      //   testID={testID}
+      //   onLayout={this.onLayout}
+      //   style={[style, styles.container]}
+      // >
+      //   <View
+      //     flex
+      //     style={{
+      //       flex: 1,
+      //       marginTop: 204,
+      //       backgroundColor: "white",
+      //     }}
+      //   >
+      //     {}
+      //   </View>
+      //   <Animated.View style={headerStyle}>
+      //     <Animated.View
+      //       style={[
+      //         styles.animatedContainer,
+      //         { transform: [{ translateY: contentTranslate }] },
+      //       ]}
+      //     >
+      //       {this.renderCalendarList()}
+      //     </Animated.View>
+      //     {this.renderKnob()}
+      //   </Animated.View>
+      //   <Animated.View style={weekdaysStyle}>
+      //     {this.renderWeekNumbersSpace()}
+      //     {this.renderWeekDaysNames(weekDaysNames)}
+      //   </Animated.View>
+      //   <Animated.ScrollView
+      //     ref={this.scrollPad}
+      //     style={[styles.scrollPadStyle, scrollPadStyle]}
+      //     overScrollMode="never"
+      //     showsHorizontalScrollIndicator={false}
+      //     showsVerticalScrollIndicator={false}
+      //     scrollEventThrottle={8}
+      //     scrollsToTop={false}
+      //     onTouchStart={this.onTouchStart}
+      //     onTouchEnd={this.onTouchEnd}
+      //     onScrollBeginDrag={this.onStartDrag}
+      //     onScrollEndDrag={this.onSnapAfterDrag}
+      //     onScroll={Animated.event(
+      //       [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
+      //       { useNativeDriver: true }
+      //     )}
+      //   >
+      //     <View
+      //       testID={AGENDA_CALENDAR_KNOB}
+      //       style={{ height: agendaHeight + KNOB_HEIGHT }}
+      //       onLayout={this.onScrollPadLayout}
+      //     />
+      //   </Animated.ScrollView>
+      // </View>
+    );
+  }
+}
+
+const appStyle = {
+  foregroundColor: "white",
+  backgroundColor: "#f2F4f5", // Agenda's reservations bg colo,
+  separatorColor: "#f2F4f5", // not in us,
+  processedColor: "#a7e0a3", // not in us,
+  processingColor: "#ffce5c", // not in us,
+  failedColor: "#f67e7e", // not in us,
+  textSecondaryColor: "#7a92a5", // not in us,
+  textDefaultColor: "#2d4150",
+  textColor: "#43515c",
+  textLinkColor: "#00BBF2",
+  textDayFontFamily: "System",
+  textMonthFontFamily: "System",
+  textDayHeaderFontFamily: "System",
+  todayButtonFontFamily: "System",
+  textDayFontWeight: "300",
+  textMonthFontWeight: "300",
+  textDayHeaderFontWeight: undefined,
+  todayButtonFontWeight: "600",
+  textDayFontSize: 16,
+  textMonthFontSize: 16,
+  textDayHeaderFontSize: 13,
+  todayButtonFontSize: 14,
+  textDayStyle: undefined,
+  dotStyle: undefined,
+  arrowStyle: undefined,
+  calendarBackground: "white",
+  textSectionTitleColor: "#b6c1cd",
+  textSectionTitleDisabledColor: "#d9e1e8",
+  selectedDayBackgroundColor: "#00BBF2",
+  selectedDayTextColor: "white",
+  todayBackgroundColor: undefined,
+  todayTextColor: "#00BBF2",
+  dayTextColor: "#2d4150",
+  textDisabledColor: "#d9e1e8",
+  textInactiveColor: "#d9e1e8",
+  dotColor: "#00BBF2",
+  selectedDotColor: "white",
+  disabledDotColor: undefined,
+  inactiveDotColor: undefined,
+  todayDotColor: undefined,
+  arrowColor: "#00BBF2",
+  disabledArrowColor: "#d9e1e8",
+  monthTextColor: "#2d4150",
+  indicatorColor: undefined, // use the default color of React Native ActivityIndicato,
+  agendaDayTextColor: "#7a92a5",
+  agendaDayNumColor: "#7a92a5",
+  agendaTodayColor: "#00BBF2",
+  agendaKnobColor: "#00BBF2",
+  todayButtonTextColor: "#00BBF2",
+  todayButtonPosition: undefined, // right' / 'left'(default,
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    overflow: "hidden",
+  },
+  animatedContainer: {
+    flex: 1,
+  },
+  knob: {
+    width: 38,
+    height: 7,
+    marginTop: 10,
+    borderRadius: 3,
+    backgroundColor: appStyle.agendaKnobColor,
+  },
+  weekdays: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingLeft: 24,
+    paddingRight: 24,
+    paddingTop: 15,
+    paddingBottom: 7,
+    backgroundColor: appStyle.calendarBackground,
+  },
+  header: {
+    overflow: "hidden",
+    justifyContent: "flex-end",
+    position: "absolute",
+    height: "100%",
+    width: "100%",
+  },
+  knobContainer: {
+    flex: 1,
+    position: "absolute",
+    left: 0,
+    right: 0,
+    height: 24,
+    bottom: 0,
+    alignItems: "center",
+    backgroundColor: appStyle.calendarBackground,
+  },
+  weekday: {
+    width: 32,
+    textAlign: "center",
+    color: appStyle.textSectionTitleColor,
+    fontSize: appStyle.textDayHeaderFontSize,
+    fontFamily: appStyle.textDayHeaderFontFamily,
+    fontWeight: appStyle.textDayHeaderFontWeight,
+  },
+  scrollPadStyle: {
+    position: "absolute",
+    width: 80,
+  },
+});
+
+
+

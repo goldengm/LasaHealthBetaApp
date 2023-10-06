@@ -1,0 +1,11 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg020Facialrecognition = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="M87 0v512h338V0zm101.687 30h134.627v31.352H188.687zM395 482H117V30h41.687v61.352h194.627V30H395z" />
+    <Path d="M177 151.352h25v-30h-55v55h30zM310 151.352h25v25h30v-55h-55zM335 362h-25v30h55v-55h-30zM177 337h-30v55h55v-30h-25zM241 422h30v30h-30zM324.55 229.901c0-37.798-30.751-68.549-68.55-68.549s-68.55 30.751-68.55 68.549v53.55C187.45 321.249 218.201 352 256 352s68.55-30.751 68.55-68.549zm-30 53.55C294.55 304.707 277.257 322 256 322s-38.55-17.293-38.55-38.549v-53.55c0-21.256 17.293-38.549 38.55-38.549s38.55 17.293 38.55 38.549z" />
+  </Svg>
+);
+
+export default Svg020Facialrecognition;

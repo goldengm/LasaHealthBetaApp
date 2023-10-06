@@ -1,0 +1,10 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg012Pyramid = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="M151 80.333h-30.2v80.333H90.6V241H60.4v80.333H30.2v80.333H0V512h241V0h-90zm-.2 30H211v50.333h-60.2zm-30.2 80.334H211V241h-90.4zM90.4 271H211v50.333H90.4zM211 482H30v-50.333h181zM60.2 401.667v-50.333H211v50.333zM211 30v50.333h-30V30zM481.8 401.667v-80.333h-30.2V241h-30.2v-80.333h-30.2V80.333H361V0h-90v512h241V401.667zm-30 0H301v-50.333h150.8zm-30.2-80.334H301V271h120.6zM391.4 241H301v-50.333h90.4zm-30.2-80.333H301v-50.333h60.2zM331 30v50.333h-30V30zm151 452H301v-50.333h181z" />
+  </Svg>
+);
+
+export default Svg012Pyramid;

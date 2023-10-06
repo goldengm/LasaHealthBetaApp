@@ -1,0 +1,646 @@
+Thoughts on setting up db updating service:
+
+
+1) need to start recording db version numbers.
+2) I could either:  
+------a) Create a universal upgrade tool which find the missing values and fills them in with defaults
+------b) or Create a db migration tool which has specific methods for upgrade from each specific db version 
+------- to the newest version (this would allow for more modification/deletion/etc but would be much more 
+------- work)
+
+
+
+
+TODO List:
+TODO List:
+TODO List:
+TODO List:
+TODO List:
+TODO List:
+TODO List:
+TODO List:
+TODO List:
+TODO List:
+TODO List:
+TODO List:
+TODO List:
+
+
+
+
+
+tips for dev from Yasmin: 
+Need more users in testing
+get more users on
+use figma walk through app with real user 
+after you talk to 5 users you've found 80% of the corrections needed
+get as many as possible to test on different os and devices 
+something nice to have.... if they haven't upgraded show a popup... there's a new update
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UI missing:
+
+(X) realign bar chart labels
+(X) switch all charts to new style
+(X) update rest of track style
+(X) update the rest of home style
+
+Fix menu pages:
+
+(X) Basic info
+(X) health profile
+--(X) finish vaginalRing / Patch / and Pill details pages (should be straightforward)
+--(X) finish adding and modifying health conditions
+(X) notification settings
+(X) general settings
+(X) unique colors for tab backgrounds
+
+Funtionality missing:
+
+(X) Onboarding, update/replace datepicker
+(X) health profile screen doesn't sync with redux profile
+
+before alpha 2.0 pre-release:
+
+(X) update onboarding date
+(X) 10 seeds per day max
+(X) fix password vulnerability
+(X) fix footer add symptom button bug
+(X) fix dates and times displaying entire gmt date
+--(/) they should display times and dates using the local time zone
+(X) fix welcome message on home page so it's always clear, either moving it lower, to the white section, flipping the image, etc
+(X) endo101 progress flower / indicator
+
+Bugs left:
+
+(X) only 1 seeds added per day only logged symptom
+(X) reminderTime on Vaginal Ring (and probably other health profile pages) doesn't open to time select, stuck on date select
+----ERROR Warning: Can't perform a React state update on an unmounted component.
+(/) need to strip away whitespace on strings/inputs generally (login especially)
+(x) frozen loading ios loging page, doesn't not matter if rememberme is checked or not
+(X) need to fix bottom margin in profile setup onboarding
+
+New Bugs:
+
+(X) how are you feeling today symptom entry date is wrong, stuck in 2020, or 2021
+(/) need to fix timezones, I don't really awknowledge or use them right now, seems to be causing
+bugs in symptom entry / display right now. If you click to edit a date on the calendar, for me
+at least it always selects the day of the date before, though the calendar is returning the date
+selected exactly, in epoch convertor it does the same conversion because it says it's switching
+to the local timezone..... so seems like a good things to check out. I might need to adjust throughout
+-I think the calendar might be in a different timezone by default
+
+Tech Timeline:
+
+(x)Android and IOS Beta 1.0 - July 20, 2022
+(/)App course weeks 1-6 integrated August 1, 2022
+()Pilot September 2022
+
+-Clean up IOS UI / achieve RN parity
+-Finish public profile implementation
+-Finish calendar implementation
+-Finish calculated stats implementation
+-Finish displayed stats and graphs on Track and Home implementation
+-Finish new settings UI
+
+-Release full Android and IOS apps.
+-Debug Android app
+-Debug IOS app
+-RN Jest full app testing suite
+-RN Detox E2E full app testing with 100% coverage
+-End user validation IOS
+-End user validation Android
+
+potential statistical libraries:
+
+-stdlib looks pretty good for a large set of features
+-simple-statistics looks great, seems to be exactly what it says
+
+
+
+List of emails and passwords that are not accepted by firebase:
+(I have no idea what the pattern or bug is yet)
+
+Doesn't work:
+ahor14@gmail.com
+d7db8b7d-04fc-4814-a555-1eb3514b80b6
+44152dca-aa84-438f-91ef-a454c85f86b3
+
+
+
+works:
+ahor14ahor14@gmail.com
+83ce4057-97f8-448c-86f1-f2620759b67e
+a@gmail.com
+e206c639-9cce-458f-9044-7f40aeaae3ba
+
+
+
+
+
+
+
+
+GardenProvider Date.now()
+trackinglogstagereducer Date.now()
+userAnalayiticsReducer Date.now()
+configureStore Date.now()
+AppIntroScreen Date.now()
+Chatbotintroscreen Date.now()
+LoginScreen Date.now()
+ProfileSetupScreen Date.now()
+TrackScreen Date.now()
+TrackSymptomsScreen Date.now()
+
+Areas Where timezone matters:
+setupScreen (store correct reminder time) -not important for now
+settings screens generally when they involve time or dates
+Home
+Track
+ViewLogHistory
+TrackSymptomsScreen
+
+Endo101 Course TODO:
+(x) week1 endo course prototype
+(x) fix week1 page formatting done: [(DONE)module1, (DONE)module2, (DONE)module3, (DONE)module4, (DONE)module5, (DONE)module6]
+(x) add in local page Logic for week1[(DONE)module1, (DONE)module2, (DONE)module3, (DONE)module4, (DONE)module5, (DONE)module6]
+(x) add in learn reducer state management for week1
+(x) blocking logic [(DONE)module1, (DONE)module2, (DONE)module3, (DONE)module4, (DONE)module5, (DONE)module6]
+
+TODO July 2022:
+(x) skip app intro if login data saved
+(x) track and home stats / graphs should be live and accurate
+(x) need to sync course state at least once a day (check in menu on update, keep timestamp of last sync)
+
+Bugs July 2022:
+
+(x) possible log in / log out savestate bug
+(x) need to fix timezones when displayed and entered (i believe it's fixed, calendar is synced at least)
+(x) crazy formatting bug my Mom found on IOS
+(x) unordered objects on ios bug
+(x) ios crash .set() on logout bug (fixed I think)
+(x) fix all ios warnings / errors in terminal
+(x) format wrong on chatbotintro, text overflowing need to add scrollview
+(x) need to add scrollview to garden just in case, to accomodate very small phones
+(x) crash at edit and home button on garden page on android
+
+Maggie Notes Aug 2, 2022:
+
+(x) (daily sync)need to save / sync the app state more often with the server. It seems to forget user details a lot
+(x) (bug)if you log in and skip the intro again, it overwrites your previous progress (must not be
+------grabbing redux data from last session and instead is just grabbing / setting with default)
+(x) shorter todo list on home page (remove confirm address)
+(x) add endo course (shortcut) to home page before menstrual stats
+(x) remove what do you need today section completely
+(x) (bug) learn course week1 progress not advancing after finishing module1... locked out of other modules
+(x) change endo101 course, make boxes follow the path
+
+To Finish before Alpha 3.1 release:
+
+(x) logout sometimes doesn't log out if rememberme is selected, just loops back into app
+(x) Learn course: (listen to formatting explanation on video)
+---(x) bullet points indented
+---(x) text broken up more (every 2-3 sentences, maybe bold some words)
+(x) need to make all screens stretch to fill entire height, particularly short screens (see garden ex.)
+(x) fix shadow gradient on top of each page, make it follow scroll window (there is a visual bug in IOS)
+(x) need to figure out a way to migrate / update old redux db's when updates are pushed
+-----maybe just keep it simple.... I know what has changed each time.....
+-----I'll just write a series of transforms that each db needs to get current
+-----then in the future if a db is several version back I'll just run several transforms in a row
+-----sequentially until they reach the most recent version
+
+Interview August 2022 changes TODO:
+
+(x) onboarding, none option for school needed
+(x) symptom tracking, added default stress and pain sliders to symptom tracking (add to top general cat)
+(x) fix formatting with achievement stats on home page / font stacking consitency on track stats and home stats
+(x) garden, change dig up feature so you need to click a dig up button to activate the mode, prevents accidents / lowers stress
+(x) choose alternative for IOS font
+(x) onboarding (wait for bot to ask question first before showing popup)
+
+
+General TODO:
+
+(x) create cloud function for getting public user profiles of everyone in your chat group 
+------(x) call this on once on login, only updates on login which is enough 
+------(x) amie profile screen doesn't reflect other user's redux profile
+------(/) connect page: endo card should reflect number of members, and member images
+------(x) Image icons should all reflect choices, including health coach / moderator
+(x) endo101 week4 advanced logic needed
+
+Possibly same bug #1:
+() Badly formatted email using rememberme after successful login attemp
+() possibly password bug.... where it doesn't aceept the correct password after possibly using rememberme
+
+
+
+
+Possible same bug #2:
+---- seems to be a logout sync to server corruption bug..... the state is fine....
+----- but null values are introduced on logout and are saved in the server, corrupting the garden etc
+----- I think 
+(/) undefined bug on logout after buying and planting in the garden, undefined plot bug in 
+savestate. Only seems to appear on first logout, garden plots do not seem to save, 
+it remembers planting and removes them from the player inventory, but the plots do not save. 
+This is also without finishing the profile, so maybe that's the problem? 
+it wipes the garden data for some reason? undefined is not an item type bug now for itemtype 
+in the playerinvetory.... hmm needs more research
+ERROR TypeError: undefined is not an object (evaluating 'newChartStats
+["chart5SymptomsCorrelatedOverTime"]["plot1"]')
+[TypeError: undefined is not an object (evaluating 'draft.playerInventory.gardenItems
+[playerInventorySlotNum].itemType')]
+-----possible connected logout bug:
+------ERROR  TypeError: undefined is not an object (evaluating 'newChartStats
+["chart5SymptomsCorrelatedOverTime"]["plot1"]')
+------This error is located at:
+------    in TrackScreen (created by Connect(TrackScreen))
+(/) this is a logout error:  ERROR  TypeError: undefined is not an object (evaluating 
+'newChartStats["chart5SymptomsCorrelatedOverTime"]["plot1"]')
+(/) garden plots still turning to null?
+
+
+
+Courses Week 2-4:
+
+(x) week2 [module1(DONE), module2(DONE), module3(DONE), module4(DONE), module5(DONE), 
+module6(DONE/page3)]
+(x) week3 [module1(DONE), module2(DONE/page6), module3(DONE/page3), module4(DONE/page3), 
+module5(DONE/page3/page5/page7/page8), module6(DONE), module7(DONE)]
+(x) week4 [module1(DONE), module2(DONE/page3), module3(DONE), module4(DONE), 
+module5(DONE), module6(DONE), module7(DONE/page1/page2/page3), 
+module8(DONE/page3/page5), module9(DONE)]
+
+
+(x) add redux to questions 
+(x) add images to weeks 2-4
+
+
+
+Fix before beta release:
+
+(x) overall week to week course progress Tracker 
+(x) add all weeks to flower progress 
+(x) reset everyone's db on account creation for each week 
+------need to add them to db upgrades in the future 
+(x) update course progress headers 
+(x) create weekly unlock system for course 
+(x) need to figure out system for multiple chatrooms
+    (x) manual for now, default to endo101fall2022group1 chat, remove family etc manually
+(x) only record first quiz answers in redux 
+(x) remove all dummy data
+(/) fix 2 login/password bugs
+(x) publish version 1.0 release for testflight
+(x) figure out how to release android aab 
+
+
+Second wave changes for release day:
+
+(x) fix android release build  (test on emulator, crashes on my phone)
+(x) bold and color for text areas of course, less bullet points
+(x) fix module times to complete
+(/) Add Maggie's suggested changes generally 
+(x) Add new changes from google doc course weeks 1-4
+(x) release full Android and iOS 
+
+
+TODO NEXT:
+
+(x) add auth check signout to all pages 
+    --exceptions: chatscreen, 
+(x) change login page so that users can just create their own login details 
+    -add link to registration page 
+(x) Add custom public profile icons 
+(x) Add squished list of up to 7 profile icons in chat group card 
+(/) firebase rejects password sometimes..... see above examples... very random right now
+----seems to be firebase side though?
+
+
+
+
+
+TODO User Feedback BETA1: FIXME before next release:
+
+(x) make header button clickable areas larger
+------Several X arrows and < buttons don’t work on the course (Andorid - Andrea Nadas)
+(x) On the “what best describes you” question - the second option doesn’t fit in the box.
+(x) Make it clear that the questions at the end are a quiz (not more survey questions) 
+(x) Make it clear why people can’t move forward to week 2 - popup or something when they 
+------try to press continue or click on a locked module.
+(x) add system for repopulating and tracking goals generally
+------Repopulate goals so people can see what they are tracking
+(x) make sure pain and stress are viewable on analytics
+(x) need to solve multiple chatrooms bug 
+---(x) add fam/friends to superchat list 
+---(x) fix superchat and endochat participants lists
+(x) end of course goal tracking added to weeks 2-4 with redux
+(x) review app redux to make sure questions line up
+
+(/) onboarding chat needs a larger bottom margin for ios, probably the footer too for ios
+(/) need to make all inputs more clickable, them seem to only be clickable where there are
+-----written words? Need to also fix input boxes in chat, they're super janky and
+-----inconsistent
+(/) double check course changes are added
+(/) finish db upgrades (make sure everyone's appstate's are fixed)
+
+
+
+
+TODO later:
+
+() add user profile pictures to chat
+() there seems to be a multiline ios bug where the first line isn't in the grey box, only the words are
+
+
+possilble bugs:
+
+() there might be bugs generally with pressing buttons multiple times while waiting for async calls to 
+-----resolve..... might call the methods multiple times and cause errors / crash 
+() there seems to be a garden bug where the press a garden plot comes up without opening the menu 
+------then it crashes whenever you select a garden plot 
+() back on settings screens always adds add settings to stack before going back fully
+() bottom list popup too high bug
+() app startup goes straight to bad formatting of login deets, skips onboarding, never sees login 
+-----screen, big bug, this happens on first time startup.... should be no previous saved data 
+
+
+
+Low priority:
+(---->) fix scroll up header where bottom half is missing
+(---->) onboarding should probably remember answers if the user has already added them through settings (optional)
+(---->) add glossery and word lookup
+(---->)() NEED A BETTER IN APP TUTORIAL (when you first hit the Home Screen) 
+--------(either click through highlight style, or todo list with links style)
+--------- put click through tutorial on first home page landing?
+(---->) full SBIR Grant (due 10/26/2022)
+-----Submission Window Date(s) (due by 5 p.m. submitter's local time):
+-----     January 11, 2022 - March 03, 2022
+-----     March 04, 2022 - June 30, 2022
+-----     July 01, 2022 - October 26, 2022 <------ last window for us (accepted in Jan 2022)
+-----Small businesses can submit a Project Pitch at any time. Small businesses that have been invited to 
+-----submit a full proposal can submit a proposal based on that Project Pitch at any time during 
+-----one of the submission windows listed above (up to one year).
+
+
+TODO Next:
+() add todo to Asana, backfill old completed tasks too 
+() reach out to ui auditors (start this)
+() SBIR grant update (start working, it will take a long time) (look up due date)
+() endo patient interviews (ask family if they know anyone with endo I can talk to)
+() do prep work for in app tutorial, create mockups, take screenshots of other apps 
+() click and drag to plant items in garden / general garden debug
+() draft internal governance documents like an incident response plan and written information 
+-----security policy, outlining our company policies for managing the data (for privacy policy, lookup)
+
+
+
+
+
+{
+  "functions": {
+    "predeploy": ["npm --prefix \"$RESOURCE_DIR\" run lint"],
+    "source": "functions"
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "/",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/timestamp",
+        "function": "app"
+      }
+    ]
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+revenuecat:
+100k/m -> $800/m = 0.008%
+
+
+
+
+adapty:
+100k/m -> $99 + $719.1 -> $818.1/m = 0.008181%
+
+
+
+
+iaphub:
+100k/m -> $500/m -> 0.005%
+
+
+
+
+
+Guide for setting up revenuecat:
+
+https://www.revenuecat.com/docs/reactnative
+https://www.revenuecat.com/docs/firebase-integration
+https://www.revenuecat.com/docs/creating-play-service-credentials
+https://support.google.com/googleplay/android-developer/answer/6230247?hl=en#zippy=%2Cstep-review-policy-guidelines-and-service-fee-tier%2Cstep-download-reports-you-may-need-later%2Cstep-make-sure-your-google-play-developer-accounts-are-registered-and-active%2Cstep-find-the-target-account-transaction-id
+
+
+
+
+
+
+properties to track:
+endo101_course_progress (week num, module num)
+symptom_tracked (num symptoms)
+appIntro_reached
+login_reached
+profile_setup_reached
+Home_screen_reached
+garden_opened
+
+// Track with event-name
+mixpanel.track('Sent Message');
+// Track with event-name and property
+mixpanel.track('Plan Selected', {'Plan': 'Premium'});
+
+
+
+always add properties:
+uid
+plan (premium/standard)
+conditions (maybe an array, mostly care about endo)
+has_endo (from course)
+
+// identify must be called before
+// user profile properties can be set
+mixpanel.identify(uid);
+// Sets user 13793's "Plan" attribute to "Premium"
+mixpanel.getPeople().set("Plan", "Premium");
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  notes:
+
+this.mixpanel.track('appIntro_reached');
+
+
+symptom_tracked (num symptoms)
+endo101_course_progress (week num, module num)
+
+
+appIntroScreen_reached
+loginScreen_reached
+registerScreen_reached
+passwordRecoveryScreen_reached
+chatbotIntroScreen_reached
+profileSetupScreen_reached
+
+homeScreen_reached
+gardenScreen_reached
+trackSymptomsScreen_reached
+trackScreen_reached
+premiumOptionsScreen_reached
+learnScreen_reached
+connectScreen_reached
+endo101ProgressScreen_reached
+
+
+
+
+
+Maiya info:
+I have a passion for health, fitness and coaching and truly strive to meet each person exactly where they are on their journey. Working with me you will always get someone who provides a safe, non-judgemental place to share and work through some of life's challenges. As a registered clinical exercise physiologist and certified health coach I'll equip you the tools needed to discover what's most important and achieve that which you never thought possible!
+
+Price: $, Qualification: NBC-HWC, Qualification: BCHN, Qualification: ACSM, Endo: Has endometriosis, Years: 5-10, Specialty: Chronic pain, Specialty: Obesity, Specialty: Chronic diseases, Specialty: Diabetes, Price: All, Qualification: All, Endo: All, Years: All, Specialty: All
+
+https://www.lasahealth.com/providers/maiyakeeling
+
+
+pageNumber
+
+
+
+    DeviceEventEmitter.emit("event.showtutorialPage", {
+      pageNumber: 0,
+    });
+
+
+
+
+
+
+*weekly notification about the course:
+set of generic messages
+(don't give it to people who haven't started the course)
+-replaces the daily notification (noon on mondays would be good)
+
+*daily notification for tracking
+towards the end of the day
+should be a trickle offset
+give them the notification
+-daily notifications (while they use the app daily)
+-if they don't use the app for 3 days, drop to once a week
+
+
+
+Don't forget to log your symptoms!
+
+
+
+
+
+
+when they log in, manage push notification scheduling:
+-schedule (3 daily, then 3 weekly)
+-maintain a db of notification id's and timestamps they will trigger
+-on login check notification id's, delete any ones in the past
+
+-keep seperate lists for 3 daily, and 3 weekly
+(if daily ever falls on a monday, put placeholder monday info to indicate the weekly notification is taking it's place)
+-schedule additional daily and weekly push notifications to get both up to 3
+
+
+
+
+
+
+
+//  for adding flipper back in generally
+"react-native-flipper": "^0.171.1",
+"redux-flipper": "^2.0.1",
+
+
+
+
+
+
+
+
+
+
+
+//  Password reset Guides
+      // const actionCodeSettings = {
+      //   // url: generatedConfirmationCode.toString(),
+      //   url:
+      //     "https://amie-health.web.app/?confirmcode=" +
+      //     generatedConfirmationCode.toString(),
+
+      //   //  use this as a guide:
+      //   // https://stackoverflow.com/questions/37932983/firebase-customize-reset-password-landing-page
+
+      //   //  actually use this:
+      //   // https://c-innovative.medium.com/implementing-password-reset-can-be-a-tricky-but-inevitable-task-737badfb7bab
+
+      //   // url: "https://www.example.com/?email=user@example.com",
+      //   // iOS: {
+      //   //   bundleId: 'com.example.ios'
+      //   // },
+      //   // android: {
+      //   //   packageName: 'com.example.android',
+      //   //   installApp: true,
+      //   //   minimumVersion: '12'
+      //   // },
+      //   // handleCodeInApp: true
+      // };
+
+
+
+
+//  FIXMETUNA:  follow this guide for local push notifications
+//medium.com/@alihaghani/background-tasks-and-local-push-notifications-with-react-native-d63fc7fff9b

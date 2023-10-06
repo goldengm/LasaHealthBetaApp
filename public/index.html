@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lasa Health Recovery</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/9.10.0/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.10.0/firebase-auth-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.10.0/firebase-database-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.10.0/firebase-firestore-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.10.0/firebase-functions-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.10.0/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/9.10.0/firebase-storage-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.10.0/firebase-analytics-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.10.0/firebase-remote-config-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.10.0/firebase-performance-compat.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+    <style media="screen">
+      body {
+        background: #eceff1;
+        color: rgba(0, 0, 0, 0.87);
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      #message {
+        background: white;
+        max-width: 360px;
+        margin: 100px auto 16px;
+        padding: 32px 24px;
+        border-radius: 3px;
+      }
+      #message h2 {
+        color: #ffa100;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0 0 8px;
+      }
+      #message h1 {
+        font-size: 22px;
+        font-weight: 300;
+        color: rgba(0, 0, 0, 0.6);
+        margin: 0 0 16px;
+      }
+      #message p {
+        line-height: 140%;
+        margin: 16px 0 24px;
+        font-size: 14px;
+      }
+      #message a {
+        display: block;
+        text-align: center;
+        background: #039be5;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: white;
+        padding: 16px;
+        border-radius: 4px;
+      }
+      #message,
+      #message a {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+      #load {
+        color: rgba(0, 0, 0, 0.4);
+        text-align: center;
+        font-size: 13px;
+      }
+      @media (max-width: 600px) {
+        body,
+        #message {
+          margin-top: 0;
+          background: white;
+          box-shadow: none;
+        }
+        body {
+          border-top: 16px solid #ffa100;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message">
+      <h1 id="modedisplay">404</h1>
+
+      <div id="customform"></div>
+
+      <h5 id="passComplexity">Page Not Found</h5>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // const loadEl = document.querySelector("#load");
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        // document.write("Hello world!");
+
+        // document.getElementById("codedisplay").innerHTML = "883383838383";
+        // document.getElementById("intputtmp").innerHTML = window.location.search;
+
+        // import { v4 as uuidv4 } from 'uuid';
+
+        let userEmail = '';
+        let oobCodeChecked = false;
+        let mode = '';
+        let oobCode = '';
+
+        try {
+          let app = firebase.app();
+
+          const db = app.firestore();
+          // let features = [
+          //   "auth",
+          //   "database",
+          //   "firestore",
+          //   "functions",
+          //   "messaging",
+          //   "storage",
+          //   "analytics",
+          //   "remoteConfig",
+          //   "performance",
+          // ].filter((feature) => typeof app[feature] === "function");
+          // loadEl.textContent = `Firebase SDK loaded with ${features.join(
+          //   ", "
+          // )}`;
+
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+
+          if (urlParams.has('mode') && urlParams.has('oobCode')) {
+            mode = urlParams.get('mode').toString();
+            oobCode = urlParams.get('oobCode').toString();
+
+            switch (mode) {
+              case 'resetPassword':
+                // Verify the password reset code is valid.
+                firebase
+                  .auth()
+                  .verifyPasswordResetCode(oobCode)
+                  .then(email => {
+                    // Promise.resolve().then(() => {
+                    // let email = "ranodooo";
+
+                    oobCodeChecked = true;
+                    userEmail = email;
+
+                    document.getElementById('modedisplay').innerHTML =
+                      'Reset password';
+
+                    document.getElementById('passComplexity').innerHTML = '';
+                    //  FIXMETUNA:
+                    //  FIXMETUNA:
+                    //  FIXMETUNA:
+                    //  FIXMETUNA:
+                    //  FIXMETUNA:
+                    //  FIXMETUNA: Probably add / insert the updated layout here
+                    //  FIXMETUNA:
+                    document.getElementById('customform').innerHTML = `<div>
+                    <div><input id="enterpass" type="password" placeholder="New password" /></div>
+                    <div><input id="confirmpass" type="password" placeholder="Confirm new password" /></div>
+                    <div> <button type="button" id="submitbutton1">Submit</button></div>
+                  </div>`;
+
+                    const submitbutton1 =
+                      document.getElementById('submitbutton1');
+                    submitbutton1.addEventListener('click', function (event) {
+                      const enterpass =
+                        document.getElementById('enterpass').value;
+                      const confirmpass =
+                        document.getElementById('confirmpass').value;
+
+                      const passwordComplexityRegex =
+                        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$/;
+
+                      if (enterpass.length < 8 || enterpass.length > 20) {
+                        alert('Password must be between 8 and 20 characters');
+                      } else if (!enterpass.match(passwordComplexityRegex)) {
+                        alert(
+                          'Password must contain lower, upper, number, and special characters',
+                        );
+                      } else if (enterpass == confirmpass) {
+                        alert('Passwords match');
+
+                        if (
+                          oobCodeChecked &&
+                          !(userEmail == null) &&
+                          !(userEmail == '')
+                        ) {
+                          const fn = firebase
+                            .functions()
+                            .httpsCallable('epLocal');
+
+                          fn({
+                            password: confirmpass.toString(),
+                            email: userEmail,
+                            arbitrarycheck: 'otrelloB812ant42a',
+                          })
+                            .then(result => {
+                              if (
+                                !(result == null) &&
+                                !(result.data.hash == null)
+                              ) {
+                                // alert("Hashed sucessfully!: " + result.data.hash.toString());
+
+                                //  FIXMETUNA:
+                                //  FIXMETUNA:
+                                //  FIXMETUNA:
+                                //  FIXMETUNA:  update the password with the associated email here
+                                // alert ("URL Search params: " + mode + " " + oobCode);
+                                firebase
+                                  .auth()
+                                  .confirmPasswordReset(
+                                    oobCode,
+                                    result.data.hash.toString(),
+                                  );
+                                alert(
+                                  'Password updated successfully! Please wait 5 minutes for servers to update, then log into the Lasa Health app to continue.',
+                                );
+                                window.location.replace(
+                                  'https://amie-health.web.app/',
+                                );
+                              } else {
+                                alert(
+                                  'Not authorized, the operation has timed out.',
+                                );
+                                window.location.replace(
+                                  'https://amie-health.web.app/',
+                                );
+                              }
+                            })
+                            .catch(e => {
+                              // Invalid or expired action code. Ask user to try to reset the password
+                              // again.
+                              alert(e);
+                              // this.router.navigate(['/auth/login']);
+                            });
+                        } else {
+                          alert('Not authorized, the operation has timed out.');
+                        }
+                      } else {
+                        alert('Passwords do not match');
+                      }
+                      // alert(event.target);
+                    });
+                  })
+                  .catch(e => {
+                    // Invalid or expired action code. Ask user to try to reset the password
+                    // again.
+                    alert(e);
+
+                    window.location.replace('https://amie-health.web.app/');
+                    // this.router.navigate(['/auth/login']);
+                  });
+                break;
+              case 'recoverEmail':
+                document.getElementById('modedisplay').innerHTML =
+                  'Recover email';
+                break;
+
+              case 'verifyEmail':
+                // userEmail = urlParams.get('email').toString();
+                document.getElementById('modedisplay').innerHTML =
+                  'Verify email';
+                document.getElementById('passComplexity').innerHTML =
+                  'Email verified! Thank you!';
+
+                firebase
+                  .auth()
+                  .applyActionCode(oobCode)
+                  .catch(error => console.log(error));
+
+                break;
+              default:
+                console.log('query parameters are missing');
+              // this.router.navigate(['/auth/login']);
+            }
+          }
+        } catch (e) {
+          console.error(e);
+          // loadEl.textContent =
+          //   "Error loading the Firebase SDK, check the console.";
+        }
+      });
+    </script>
+  </body>
+</html>

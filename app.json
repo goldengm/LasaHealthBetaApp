@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "Lasa Health",
+    "slug": "lasa-health-app",
+    "privacy": "public",
+    "platforms": ["ios", "android"],
+    "version": "1.0.10",
+    "orientation": "portrait",
+    "icon": "./assets/icon.jpg",
+    "splash": {
+      "image": "./assets/amieSplash.png",
+      "resizeMode": "stretch",
+      "backgroundColor": "#FFFFFF"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "requireFullScreen": true,
+      "bundleIdentifier": "com.lasahealth.appalpha"
+    },
+    "android": {
+      "minifyEnabled": true,
+      "enableProguardInReleaseBuilds": true,
+      "package": "com.lasahealth.appalpha"
+    },
+    "backgroundColor": "#FFFFFF",
+    "notification": {
+      "color": "#FFFFFF"
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#FFFFFF"
+    },
+    "web": {
+      "themeColor": "#FFFFFF"
+    },
+    "description": "Lasa Health App"
+  },
+  "backgroundColor": "#FFFFFF"
+}

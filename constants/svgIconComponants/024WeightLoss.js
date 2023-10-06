@@ -1,0 +1,17 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg024Weightloss = (props) => (
+  <Svg
+    height={512}
+    viewBox="0 0 510 510"
+    width={512}
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <Path d="M105 225h60v30h-60zM105 345h60v30h-60zM75 285h120v30H75zM345 225h60v30h-60zM345 345h60v30h-60zM315 285h120v30H315zM420 420h30v30h-30zM60 420h30v30H60z" />
+    <Path d="M358.924 90C351.623 39.184 307.805 0 255 0s-96.623 39.184-103.924 90H0v420h510V90zM255 30c41.355 0 75 33.645 75 75 0 5.136-.522 10.152-1.51 15H270V75h-30v45h-58.491A75.127 75.127 0 0 1 180 105c0-41.355 33.645-75 75-75zm59.959 120c-13.696 18.204-35.475 30-59.959 30s-46.263-11.796-59.959-30zM480 480H270V270h-30v210H30V120h121.076c7.301 50.816 51.119 90 103.924 90s96.623-39.184 103.924-90H480z" />
+  </Svg>
+);
+
+export default Svg024Weightloss;

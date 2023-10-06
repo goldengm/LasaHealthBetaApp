@@ -1,0 +1,64 @@
+{
+  "comments": "keys use the following format, module.subject.question/entry/etc",
+  "validation.pain.1": {
+    "q": [
+      "I'm sorry you're in so much pain right now. Would you like to talk?",
+      "Sorry you're hurting, can I help?",
+      "Sorry you're in pain, would you like to talk about it?",
+      "I care about you, I'm sorry life is painful right now. Is now a good time to talk?",
+      "Your pain is real, is there anything I can do to help?",
+      "Logging your pain can be a great way to create a helpful record for your physician. Is there anything I can do to help?"
+    ],
+    "a": {"Not right now": "exit", "Sure": "routing.chooseModule.listAll"}
+  },
+  "validation.sad.1": {
+    "q": [
+      "Hi I'm Lasa, I'll pop up to help from time to time. I'm sorry you're feeling down, we all have rough days. Is now a good time to talk?",
+      "Hi there, I'm Lasa. Life is sad sometimes, sorry you're feeling sad. Is there anything I can do to help?",
+      "Hi, I'm Lasa. Your feelings are important, would you like to talk about them?",
+      "Hey there! My name is Lasa. I care about you, can I help at all?"
+    ],
+    "a": {"Not right now": "exit", "Sure": "routing.chooseModule.listAll"}
+  },
+  "validation.depressed.1": {
+    "q": [
+      "Life can be very hard sometimes, sorry you're feeling down. Would you like to talk about it?",
+      "Depression is much more common then we might realize, can I help at all?",
+      "Sorry you're feeling so down, I have hard days too. Would you like to talk?",
+      "I care about you, I'm sorry you're feeling so down today. I'm here if you need me.",
+      "I believe you, we all have hard days. Would a conversation help life your day?"
+    ],
+    "a": {"Not right now": "exit", "Sure": "routing.chooseModule.listAll"}
+  },
+  "validation.anxiety.1": {
+    "q": [
+      "It makes sense you're feeling anxiety, there's a lot to worry about. Would you like to talk about it?",
+      "There is a lot to be stressed about, would talking through it help?",
+      "Stress can feel all consuming sometimes, can I help at all?",
+      "Anxiety is real and difficult to live through. I'm sorry life might feel overwhelming right now. Can I help at all?",
+      "I'm sorry life is feeling overwhelming right now. Would you like to talk about it?"
+    ],
+    "a": {"Not right now": "exit", "Sure": "routing.chooseModule.listAll"}
+  },
+  "validation.loss.1": {
+    "q": [
+      "I'm sorry these are such hard times. Can I do anything to help?",
+      "Loss is a lot of things, and we all process it differently. I'm here if you would like to talk.",
+      "I'm sorry you're in so much pain right now, I'm here if you would like help processing.",
+      "Your loss is real and significant. I'm here if you would like to talk.",
+      "Loss can be overwhelming and confusing, I'm here if you would appreciate some help processing"
+    ],
+    "a": {"Not right now": "exit", "Sure": "routing.chooseModule.listAll"}
+  },
+  "validation.lonely.1": {
+    "q": [
+      "We all feel alone sometimes. I'm here if you need me.",
+      "You deserve friendship and love, I' m here if you would like to talk",
+      "Your loneliness is real, regardless of the circumstances. Sorry you' re feeling alone.  Can I help at all?",
+      "Sorry you're feeling down, can I help at all?",
+      "We all need a friend who listens, I'm here if you would like to talk.",
+      "Sorry you're feeling alone, I'll be your friend if you let me. Would you like to talk?"
+    ],
+    "a": {"Not right now": "exit", "Sure": "routing.chooseModule.listAll"}
+  }
+}

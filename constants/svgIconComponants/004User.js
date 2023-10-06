@@ -1,0 +1,11 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg004User = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="M0 391h60v121h392V391h60V0H0zm30-30V150h30v211zm60 121V150h332v332zm362-121V150h30v211zm30-331v90H30V30z" />
+    <Path d="M60 60h30v30H60zM120 60h30v30h-30zM180 60h30v30h-30zM301 60h151v30H301zM331 346c0-41.355-33.645-75-75-75s-75 33.645-75 75v15h150zm-117.43-15c6.19-17.461 22.873-30 42.43-30s36.239 12.539 42.43 30zM301 226c0-24.813-20.187-45-45-45s-45 20.187-45 45 20.187 45 45 45 45-20.187 45-45zm-45 15c-8.271 0-15-6.729-15-15s6.729-15 15-15 15 6.729 15 15-6.729 15-15 15zM151 391h30v30h-30zM211 391h30v30h-30zM271 391h30v30h-30zM331 391h30v30h-30z" />
+  </Svg>
+);
+
+export default Svg004User;

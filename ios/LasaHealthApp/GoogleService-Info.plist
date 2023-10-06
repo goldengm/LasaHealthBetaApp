@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>585100410967-dnpruuqqc2ts6h35925k67s4t3a9s16f.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.585100410967-dnpruuqqc2ts6h35925k67s4t3a9s16f</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBlFYpRCW-Vv4bxWF7OPGEkAtovaLK9rfU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>585100410967</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.lasahealth.appalpha</string>
+	<key>PROJECT_ID</key>
+	<string>amie-health</string>
+	<key>STORAGE_BUCKET</key>
+	<string>amie-health.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:585100410967:ios:38dbd17cca448cadd56312</string>
+</dict>
+</plist>

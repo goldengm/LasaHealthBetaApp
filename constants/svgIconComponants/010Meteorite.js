@@ -1,0 +1,11 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg010Meteorite = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="M121 440.541 156.729 512h132.812L361 476.271v-63.057l30-30V211.001h-30v60h-30v-51.213L292.213 181H271v-60h-30v60h-24.271l-33.058 66.115L159.787 271H151v-60h-30zM172.213 301l36.115-36.115L235.271 211h44.517L301 232.213V271h-21.213l-30 30H241v30h21.213l30-30H361v69.787L339.787 392H301v30h30v35.729L282.459 482H175.271l-15-30h43.757l34.453-51.679-24.961-16.641L187.973 422H151V301zM121 91h30v90h-30z" />
+    <Path d="M181 31h30v120h-30zM301 31h30v120h-30zM241 0h30v91h-30zM361 91h30v90h-30z" />
+  </Svg>
+);
+
+export default Svg010Meteorite;

@@ -1,0 +1,17 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg019Computer = (props) => (
+  <Svg
+    height={512}
+    viewBox="0 0 510 510"
+    width={512}
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <Path d="M510 420V30H0v390h185.73l-15 30H135v30h240v-30h-35.729l-15-30zM480 60v270H30V60zM30 390v-30h450v30H30zm275.729 60H204.27l15-30h71.459z" />
+    <Path d="M360 90h90v30h-90zM360 150h90v30h-90zM360 210h90v30h-90zM360 270h90v30h-90zM60 90h90v30H60zM60 150h90v30H60zM60 210h90v30H60zM60 270h90v30H60zM225 270h60v30h30v-60c0-17.907-7.896-33.997-20.377-45C307.104 183.997 315 167.907 315 150V90h-30v30.052h-60V90h-30v60c0 17.907 7.895 33.997 20.377 45C202.895 206.003 195 222.093 195 240v60h30zm.001-119.948h59.998c-1.57 39.686-58.442 39.656-59.998 0zM285 240h-60c1.513-39.754 58.501-39.724 60 0z" />
+  </Svg>
+);
+
+export default Svg019Computer;

@@ -1,0 +1,11 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const Svg034Throne = (props) => (
+  <Svg height={512} width={512} xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="M427.597 241V0h-37.524v241zM121.927 241V0H84.403v241zM151.927 406.046h208.146V512H151.927zM151.927 74.503v234.019h37.522V94.688L256 50.978l66.551 43.71v213.834h37.522V74.503L256 6.15zM151.927 338.522h208.146v37.523H151.927z" />
+    <Path d="M219.449 110.876v197.646h73.102V110.876L256 86.87zM50.643 338.522h71.284V512H50.643zM50.643 271h71.284v37.522H50.643zM390.073 338.522h71.284V512h-71.284zM390.073 271h71.284v37.522h-71.284z" />
+  </Svg>
+);
+
+export default Svg034Throne;
