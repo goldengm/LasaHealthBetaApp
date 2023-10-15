@@ -44,6 +44,7 @@ export default {
     OnboardingIntro4: require("../assets/imgs/onboarding/onboarding_4.png"),
     OnboardingIntro5: require("../assets/imgs/onboarding/onboarding_5.png"),
     OnboardingIntro6: require("../assets/imgs/onboarding/onboarding_6.png"),
+    CeapsLogo: require("../assets/mel/ceapsLogo.png"),
   },
   chatbot: {
     ChatbubbleIntro1: require("../assets/amie/chatbot/chatbubble.png"),
