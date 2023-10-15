@@ -1,10 +1,10 @@
 import React from 'react';
-import {ScrollView, Dimensions, Linking, View} from 'react-native';
+import {ScrollView, Dimensions, Linking, View, Image} from 'react-native';
 import {Text, ListItem, Avatar} from 'react-native-elements';
 import {connect} from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 // import Purchases from 'react-native-purchases';
-import {theme, styles} from '../constants';
+import {theme, styles, Images} from '../constants';
 import {getSVG} from '../constants/SVGs';
 import {APP_VERSION} from '../constants/AppVersion';
 import {Button, Icon, LoadingIndicator, TouchableOpacity} from '../components';
@@ -186,8 +186,73 @@ class CustomDrawerContent extends React.Component {
             <View
               style={{
                 marginHorizontal: theme.SIZES.BASE,
-                marginTop: theme.SIZES.BASE,
+                // marginTop: theme.SIZES.BASE,
               }}>
+              {this.props.userProfile.OnboardingAnswers.onboarding
+                .associatedClinic == 'ceaps' && (
+                <TouchableOpacity
+                  key={'ceaps'}
+                  onPress={() => {
+                    Promise.resolve()
+                      .then(async () => {
+                        try {
+                          const url = 'https://iceaps.com/contact-us';
+                          const supported = await Linking.canOpenURL(url);
+
+                          if (supported) {
+                            await Linking.openURL(url);
+                          } else {
+                            console.error(`Cannot open URL: ${url}`);
+                          }
+                        } catch (error) {
+                          console.error(`An error occurred: ${error}`);
+                        }
+                      })
+                      .catch(error => {
+                        console.log(error);
+                      });
+                  }}>
+                  <ListItem
+                    topDivider
+                    containerStyle={{borderColor: theme.COLORS.TRANSPARENT}}>
+                    <ListItem.Content>
+                      <ListItem.Title>
+                        <View>
+                          <Image
+                            source={Images.onboarding.CeapsLogo}
+                            style={{
+                              width: 140,
+                              height: 109,
+                            }} // origin: 262 * 204
+                          />
+                          <TouchableOpacity
+                            onPress={() => {
+                              Linking.openURL(`tel:${7868829966}`);
+                            }}>
+                            <Text
+                              style={{
+                                marginTop: theme.SIZES.BASE * 0.5,
+                                textAlign: 'center',
+                                color: theme.COLORS.PRIMARY2,
+                                fontWeight: 'bold',
+                              }}>
+                              Call Clinic
+                            </Text>
+                          </TouchableOpacity>
+                        </View>
+                      </ListItem.Title>
+                    </ListItem.Content>
+
+                    {/* <View style={{height: 26, width: 26}}>
+                      <Icon
+                        family="ionicon"
+                        name="chevron-forward-outline"
+                        fill={theme.COLORS.DEFAULT}
+                      />
+                    </View> */}
+                  </ListItem>
+                </TouchableOpacity>
+              )}
               {settingsMainList.map((l, i) => (
                 <TouchableOpacity
                   key={i}
