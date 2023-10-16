@@ -4,6 +4,7 @@ import * as actions from '../../redux/constants/index';
 
 jest.mock('expo-print', () => ({}));
 jest.mock('expo-sharing', () => ({}));
+jest.mock('@react-native-firebase/functions', () => ({}));
 jest.mock('react-native-elements', () => ({}));
 jest.mock('../../shared/PlatformUtils', () => ({
   getOS: jest.fn(() => 'android'),

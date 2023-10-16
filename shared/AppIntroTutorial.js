@@ -20,6 +20,7 @@ import {
   CheckBox,
   Icon,
   TouchableOpacity,
+  TouchableWithoutFeedback,
 } from '../components';
 
 import {setAppIntroTutorialCompleteAction} from '../redux/actions/userProfileActions';
@@ -151,8 +152,8 @@ export class AppIntroTutorial extends React.Component {
             public profile in the upper left menu.
           </Text>
           <Text></Text>
-          <Text>You are not alone! Find your
-            people, we're growing every day!
+          <Text>
+            You are not alone! Find your people, we're growing every day!
           </Text>
         </View>
       );
@@ -205,7 +206,7 @@ export class AppIntroTutorial extends React.Component {
 
     return (
       <Overlay
-        testID='testID'
+        testID="testID"
         isVisible={modalVisible}
         onBackdropPress={() => {
           console.log('Overlay background pressed');
@@ -223,81 +224,88 @@ export class AppIntroTutorial extends React.Component {
           paddingVertical: 0,
           marginVertical: 0,
         }}>
-        <View style={{flex: 1}}>
-          <View
-            style={{
-              backgroundColor: theme.COLORS.TRANSPARENT,
-            }}></View>
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              backgroundColor: theme.COLORS.TRANSPARENT,
-
-              alignItems: 'center',
-            }}>
+        <TouchableWithoutFeedback
+          style={{flex: 1}}
+          onPress={() => this.closeTutorial()}>
+          <View>
             <View
               style={{
-                backgroundColor: theme.COLORS.WHITE,
-                borderRadius: 20,
-                marginHorizontal: theme.SIZES.BASE,
-                padding: theme.SIZES.BASE,
-                alignItems: 'center',
-                shadowColor: theme.COLORS.BLACK,
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 4,
-                elevation: 5,
-              }}>
-              {this.getTutorialDescription()}
+                backgroundColor: theme.COLORS.TRANSPARENT,
+              }}></View>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                backgroundColor: theme.COLORS.TRANSPARENT,
 
+                alignItems: 'center',
+              }}>
               <View
                 style={{
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  marginTop: theme.SIZES.BASE,
-
-                  width: width - theme.SIZES.BASE * 8,
+                  backgroundColor: theme.COLORS.WHITE,
+                  borderRadius: 20,
+                  marginHorizontal: theme.SIZES.BASE,
+                  padding: theme.SIZES.BASE,
+                  alignItems: 'center',
+                  shadowColor: theme.COLORS.BLACK,
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.25,
+                  shadowRadius: 4,
+                  elevation: 5,
                 }}>
+                {this.getTutorialDescription()}
+
                 <View
                   style={{
-                    alignContent: 'center',
-                    alignItems: 'center',
-                    paddingTop: 0,
-                    marginTop: 0,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    marginTop: theme.SIZES.BASE,
+                    backgroundColor: theme.COLORS.WHITE,
+                    width: width - theme.SIZES.BASE * 8,
                   }}>
-                  <Button
+                  <View
                     style={{
-                      ...styles.button,
-                      width: width / 2.0 - theme.SIZES.BASE * 5.0,
-                      fontSize: 16,
-                      fontWeight: '700',
-                      textAlign: 'center',
-                    }}
-                    titleStyle={{
-                      color: theme.COLORS.WHITE,
-                      fontFamily: theme.FONTS.TEXT,
-                    }}
-                    title="Close"
-                    onPress={() => {
-                      this.closeTutorial();
-                    }}></Button>
+                      alignContent: 'center',
+                      alignItems: 'center',
+                      paddingTop: 0,
+                      marginTop: 0,
+                    }}>
+                    <Button
+                      style={{
+                        ...styles.button,
+                        width: width / 2.0 - theme.SIZES.BASE * 5.0,
+                        fontSize: 16,
+                        fontWeight: '700',
+                        textAlign: 'center',
+                      }}
+                      titleStyle={{
+                        color: theme.COLORS.WHITE,
+                        fontFamily: theme.FONTS.TEXT,
+                      }}
+                      title="Close"
+                      onPress={() => {
+                        this.closeTutorial();
+                      }}></Button>
+                  </View>
                 </View>
               </View>
             </View>
-          </View>
 
-          <View style={{flexDirection: 'row'}}>
             <View
               style={{
-                height: 80,
-                backgroundColor: theme.COLORS.TRANSPARENT,
-              }}></View>
+                flexDirection: 'row',
+              }}>
+              <View
+                style={{
+                  height: 80,
+                  backgroundColor: theme.COLORS.TRANSPARENT,
+                }}></View>
+            </View>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
       </Overlay>
     );
   }

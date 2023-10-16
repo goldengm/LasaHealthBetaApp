@@ -7,6 +7,7 @@ jest.mock('react-native-keychain', () => ({}));
 jest.mock('react-native-device-info', () => ({}));
 jest.mock('expo-print', () => ({}));
 jest.mock('expo-sharing', () => ({}));
+jest.mock('@react-native-firebase/functions', () => ({}));
 jest.mock('@react-native-firebase/messaging', () => ({}));
 jest.mock('@notifee/react-native', () => ({}));
 

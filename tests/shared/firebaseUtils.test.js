@@ -6,6 +6,7 @@ import {
 jest.mock('react-native-keychain', () => ({}));
 jest.mock('react-native-device-info', () => ({}));
 jest.mock('react-native-elements', () => ({}));
+jest.mock('@react-native-firebase/functions', () => ({}));
 
 jest.mock('firebase/compat/app', () => ({
   apps: [0],

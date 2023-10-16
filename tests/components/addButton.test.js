@@ -14,10 +14,8 @@ jest.mock('victory-native', () => ({}));
 jest.mock('react-native-device-info', () => ({}));
 jest.mock('expo-print', () => ({}));
 jest.mock('expo-sharing', () => ({}));
-jest.mock('react-native-purchases', () => ({}));
-
-
-
+jest.mock('@react-native-firebase/functions', () => ({}));
+//jest.mock('react-native-purchases', () => ({}));
 
 jest.mock('redux', () => ({
   createStore: jest.fn(() => {}),

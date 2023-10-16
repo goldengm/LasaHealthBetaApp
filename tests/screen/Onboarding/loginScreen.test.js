@@ -17,9 +17,9 @@ jest.mock('expo-status-bar', () =>
 jest.mock('react-native-gesture-handler', () =>
   require('../../__mocks__/react-native-gesture-handler.mock.js'),
 );
-jest.mock('react-native-purchases', () =>
-  require('../../__mocks__/react-native-purchases.mock.js'),
-);
+//jest.mock('react-native-purchases', () =>
+//  require('../../__mocks__/react-native-purchases.mock.js'),
+//);
 
 jest.mock('react-native-device-info', () => ({}));
 jest.mock('mixpanel-react-native', () =>
@@ -41,6 +41,7 @@ jest.mock('@react-native-async-storage/async-storage', () => ({}));
 jest.mock('react-native-gesture-handler/Swipeable', () => ({}));
 jest.mock('expo-print', () => ({}));
 jest.mock('expo-sharing', () => ({}));
+jest.mock('@react-native-firebase/functions', () => ({}));
 jest.mock('redux', () => ({
   createStore: jest.fn(() => {}),
   combineReducers: jest.fn(() => {}),
