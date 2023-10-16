@@ -28,7 +28,7 @@ class LearnScreen extends React.Component {
     this.initializeMissingCourseStatesRedux();
 
     this.state = {
-      courseProgress: 0,
+      courseProgress: props.endoCourse.courseProgress,
     };
 
     this.scrollViewRef = React.createRef();
@@ -39,7 +39,7 @@ class LearnScreen extends React.Component {
     this.mixpanel.track('endo101ProgressScreen_reached');
 
     this.scrollViewRef.current.scrollTo({
-      y: width * 3.66 - this.state.courseProgress * 130,
+      y: (12 - this.state.courseProgress) * 105,
       duration: 500,
       animated: false,
     });
