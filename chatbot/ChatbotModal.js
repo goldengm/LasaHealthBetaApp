@@ -74,10 +74,11 @@ export class ChatbotModal extends React.Component {
       multiOptionPickerList: [],
       multiSelectedOptions: [],
 
-      userResponseContainerHeight: 55,
+      // userResponseContainerHeight: 55,
+      userResponseContainerHeight: 10,
     };
 
-    this.giftedChatRef = createRef();
+    this.giftedChatInputRef = createRef();
     this.activeItemHeight = 45;
     this.generalSymptomsList = utils.generalSymptomsList;
     this.numberList = utils.numberList;
@@ -243,13 +244,18 @@ export class ChatbotModal extends React.Component {
     ] = this.calcToolbarHeights();
 
     Promise.resolve()
-      .then(() =>
-        this.setState({
-          userResponseContainerHeight: newUserResponseContainerHeight,
-        }),
-      )
+      // .then(() =>
+      //   this.setState({
+      //     userResponseContainerHeight: newUserResponseContainerHeight,
+      //   }),
+      // )
+      // .then(() => {
+      //   this.giftedChatRef.current.resetInputToolbar();
+      // })
       .then(() => {
-        this.giftedChatRef.current.resetInputToolbar();
+        if (this.giftedChatInputRef.current) {
+          this.giftedChatInputRef.current.clear();
+        }
       })
       .catch(error => {
         console.log(error);
@@ -1127,7 +1133,8 @@ export class ChatbotModal extends React.Component {
             // backgroundColor: theme.COLORS.ERROR1,
           }}>
           <GiftedChat
-            ref={this.giftedChatRef}
+            // ref={this.giftedChatRef}
+            textInputRef={this.giftedChatInputRef}
             messages={this.state.chatbotModalMessages}
             onSend={messages => this.onSend(messages)}
             user={{

@@ -4,6 +4,7 @@ jest.mock('react-native-keychain', () => ({}));
 jest.mock('react-native-device-info', () => ({}));
 jest.mock('expo-print', () => ({}));
 jest.mock('expo-sharing', () => ({}));
+jest.mock('@react-native-firebase/functions', () => ({}));
 // jest.mock('mixpanel-react-native', () => ({}));
 
 jest.mock('mixpanel-react-native', () =>

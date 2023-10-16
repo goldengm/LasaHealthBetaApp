@@ -1,9 +1,5 @@
 import React, {createRef} from 'react';
-import {
-  Image,
-  View,
-  ActivityIndicator,
-} from 'react-native';
+import {Image, View, ActivityIndicator} from 'react-native';
 import {connect} from 'react-redux';
 import produce from 'immer';
 import {theme, styles} from '../../constants';
@@ -32,7 +28,8 @@ class ChatbotScreen extends React.Component {
     super(props);
     this.state = {
       chatbotTyping: false,
-      userResponseContainerHeight: 55,
+      // userResponseContainerHeight: 55,
+      userResponseContainerHeight: 10,
 
       inputVisible: false,
       buttonReponsesVisible: true,
@@ -54,10 +51,8 @@ class ChatbotScreen extends React.Component {
     };
 
     this.amieChatbot = createRef();
-    this.giftedChatRef = createRef();
+    this.giftedChatInputRef = createRef();
     this.activeItemHeight = 45;
-
-  
 
     // Promise.resolve()
     //   .then(() => trainChatbot())
@@ -167,7 +162,6 @@ class ChatbotScreen extends React.Component {
   syncUserResponseContainerHeight = async () => {
     console.log('Syncing input container size');
 
-    
     const [
       datePicketActiveRowCount,
       singleOptionActiveRowCount,
@@ -177,14 +171,19 @@ class ChatbotScreen extends React.Component {
     ] = this.calcToolbarHeights();
 
     Promise.resolve()
-      .then(() =>
-        this.setState({
-          userResponseContainerHeight: newUserResponseContainerHeight,
-        }),
-      )
+      // .then(() =>
+      //   this.setState({
+      //     userResponseContainerHeight: newUserResponseContainerHeight,
+      //   }),
+      // )
+      // .then(() => {
+      //   console.log('Updating input toolbar');
+      //   this.giftedChatRef.current.resetInputToolbar();
+      // })
       .then(() => {
-        console.log('Updating input toolbar');
-        this.giftedChatRef.current.resetInputToolbar();
+        if (this.giftedChatInputRef.current) {
+          this.giftedChatInputRef.current.clear();
+        }
       })
       .catch(error => {
         console.log(error);
@@ -280,10 +279,7 @@ class ChatbotScreen extends React.Component {
     const currentDate = selectedDate || this.state.startDate;
     this.setShowDate(getOS() === 'ios');
     this.setStartDate(currentDate);
-    console.log(
-      'Date changed: ',
-      selectedDate,
-    );
+    console.log('Date changed: ', selectedDate);
     this.onUserSelectMessage(selectedDate.toString());
     this.setDatePickerVisible(false);
     this.setDatePickerMode('date');
@@ -368,7 +364,6 @@ class ChatbotScreen extends React.Component {
           alignContent: 'flex-end',
         }}>
         {Object.entries(itemsList).map(itemTmp => {
-
           let indexCount = itemTmp[0];
           let nameNew = itemTmp[1];
           // // console.log("PRINTING ALL SYMP DICTIONARIES!!!!", sympDict);
@@ -478,17 +473,17 @@ class ChatbotScreen extends React.Component {
 
         Promise.resolve()
 
-            // .then(() => {
-            //   for (const messageVal of response.response) {
-            //     this.onAmieChatbotMessage(messageVal);
-            //     this.sleep(500);
-            //   }
-            // })
-            // .then(() => {
-            //   // this.onAmieChatbotMessage(response.response);
-            //   this.setInputVisible(response.freeformInputAccepted);
-            //   return this.setButtonResponsesList(response.responseOptions);
-            // });
+          // .then(() => {
+          //   for (const messageVal of response.response) {
+          //     this.onAmieChatbotMessage(messageVal);
+          //     this.sleep(500);
+          //   }
+          // })
+          // .then(() => {
+          //   // this.onAmieChatbotMessage(response.response);
+          //   this.setInputVisible(response.freeformInputAccepted);
+          //   return this.setButtonResponsesList(response.responseOptions);
+          // });
           .then(() => {
             this.onAmieChatbotMessage(response.response);
             this.setInputVisible(response.freeformInputAccepted);
@@ -674,10 +669,7 @@ class ChatbotScreen extends React.Component {
   };
 
   render() {
-    const {
-      navigation,
-      customOnBackdropPress,
-    } = this.props;
+    const {navigation, customOnBackdropPress} = this.props;
 
     const [
       datePicketActiveRowCount,
@@ -686,9 +678,6 @@ class ChatbotScreen extends React.Component {
       buttonResponseListActiveRowCount,
       newUserResponseContainerHeight,
     ] = this.calcToolbarHeights();
-
-
-
 
     // console.log("RERENDER MESSAGES: ", this.props.amieChatbot.currentChatMessages);
 
@@ -812,11 +801,11 @@ minInputToolbarHeight (Integer) - Minimum height of the input toolbar; default i
 
     // console.log("CHATBOT SCREEN PROPS: ", this.props);
 
-
     return (
       <View testID="chatbotView" style={{flex: 1, alignContent: 'center'}}>
         <GiftedChat
-          ref={this.giftedChatRef}
+          // ref={this.giftedChatRef}
+          textInputRef={this.giftedChatInputRef}
           messages={this.props.amieChatbotRedux.currentChatMessages}
           onSend={messages => this.onSend(messages, 'freeformInput')}
           onPressAvatar={() => {
@@ -963,7 +952,6 @@ minInputToolbarHeight (Integer) - Minimum height of the input toolbar; default i
                       alignItems: 'flex-start',
                       justifyContent: 'center',
                     }}>
-
                     {Object.entries(this.state.buttonResponsesList).map(
                       (responseObj, i) => (
                         <Chip
@@ -981,7 +969,6 @@ minInputToolbarHeight (Integer) - Minimum height of the input toolbar; default i
                               console.log('EXIT');
                               navigation.replace('App');
                             } else {
-
                               Promise.resolve()
                                 .then(() => {
                                   const responseMessage = {

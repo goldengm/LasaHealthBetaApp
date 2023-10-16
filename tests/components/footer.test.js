@@ -42,7 +42,8 @@ jest.mock('firebase/compat/app', () => ({
 }));
 jest.mock('expo-print', () => ({}));
 jest.mock('expo-sharing', () => ({}));
-jest.mock('react-native-purchases', () => ({}));
+jest.mock('@react-native-firebase/functions', () => ({}));
+//jest.mock('react-native-purchases', () => ({}));
 
 it('Testing Footer instantiation', async () => {
   // const componantInstance = shallow(<Footer />);
