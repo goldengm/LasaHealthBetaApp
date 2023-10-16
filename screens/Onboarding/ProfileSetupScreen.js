@@ -68,11 +68,13 @@ import {setTodoStatusAction} from '../../redux/actions/userProfileActions';
 import {GardenContext} from '../../garden/GardenProvider';
 
 import {getOS} from '../../shared/PlatformUtils';
+import {isValidZipCode} from '../../shared/TextUtils';
 
 const iosPlatform = () => getOS() == 'ios';
 
 const {width, height} = Dimensions.get('screen');
 const initialDateValue = new Date(1598051730000);
+const ceapsReferralCode = 'ceaps';
 
 class ProfileSetupScreen extends React.Component {
   constructor(props) {
@@ -104,10 +106,12 @@ class ProfileSetupScreen extends React.Component {
       multiOptionPickerList: [],
       multiSelectedOptions: [],
 
-      userResponseContainerHeight: 55,
+      // userResponseContainerHeight: 55,
+      userResponseContainerHeight: 10, //  debug, in place on incompatible resetInputToolbar()
     };
 
-    this.giftedChatRef = createRef();
+    this.giftedChatInputRef = createRef();
+    // this.giftedChatRef = createRef();
     this.activeItemHeight = 45;
     this.generalSymptomsList = utils.generalSymptomsList;
     this.numberList = utils.numberList;
@@ -246,13 +250,15 @@ class ProfileSetupScreen extends React.Component {
     ] = this.calcToolbarHeights();
 
     Promise.resolve()
-      .then(() =>
-        this.setState({
-          userResponseContainerHeight: newUserResponseContainerHeight,
-        }),
-      )
+      // .then(() =>
+      //   this.setState({
+      //     userResponseContainerHeight: newUserResponseContainerHeight,
+      //   }),
+      // )
       .then(() => {
-        this.giftedChatRef.current.resetInputToolbar();
+        if (this.giftedChatInputRef.current) {
+          this.giftedChatInputRef.current.clear();
+        }
       })
       .catch(error => {
         console.log(error);
@@ -551,6 +557,9 @@ class ProfileSetupScreen extends React.Component {
       freeformInputAccepted: false,
       responseOptions: {},
     };
+
+    let additionalPrependedResponses = [];
+
     //  FIXMETUNA:  use this to ask the next question in the onboarding process
     // this.state.currentOnboardingIndex;
     //  FIXMETUNA:  call this whenever the next question in the sequence is asked
@@ -560,6 +569,36 @@ class ProfileSetupScreen extends React.Component {
     //  FIXMETUNA:  skip through onboarding questions depending on previous user responses
     //  FIXMETUNA:
     return Promise.resolve()
+
+      .then(() => {
+        if (this.state.currentOnboardingIndex == 5) {
+          if (!(userMessageText == 'Yes')) {
+            return this.setCurrentOnboardingIndex(7);
+          }
+        }
+      })
+      .then(() => {
+        if (this.state.currentOnboardingIndex == 6) {
+          if (userMessageText.toLowerCase() == 'none') {
+            return this.setCurrentOnboardingIndex(7);
+          }
+        }
+      })
+      .then(() => {
+        if (this.state.currentOnboardingIndex == 7) {
+          if (
+            !(userMessageText == 'Yes') &&
+            !(userMessageText == 'No') &&
+            !(userMessageText.toLowerCase() == 'none')
+          ) {
+            additionalPrependedResponses = [
+              "We'll make sure to send you reminders and support as your appointment nears!",
+            ];
+            return this.setOnboarding(userMessageText, 'surgeryDate');
+          }
+        }
+      })
+
       .then(() => {
         if (this.state.currentOnboardingIndex == 10) {
           if (!(userMessageText == 'Yes')) {
@@ -621,7 +660,7 @@ class ProfileSetupScreen extends React.Component {
               this.delayedExecution(2500, () =>
                 this.setDatePickerVisible(true),
               );
-              
+
               this.setCurrentOnboardingIndex(
                 this.state.currentOnboardingIndex + 1,
               );
@@ -650,14 +689,14 @@ class ProfileSetupScreen extends React.Component {
                 this.delayedExecution(3000, () =>
                   this.setSingleOptionPickerVisible(true),
                 );
-                
+
                 this.setCurrentOnboardingIndex(
                   this.state.currentOnboardingIndex + 1,
                 );
                 this.setOnboarding(userMessageText, 'birthday');
               } else {
                 responseObj.response = [
-                  'You must be at least 18 to use our app, sorry.',
+                  'Your age must be between 18 and 120 to use our app, sorry.',
                 ];
 
                 this.setDatePickerMode('date');
@@ -684,8 +723,10 @@ class ProfileSetupScreen extends React.Component {
                   "What's your zip code?",
                 ];
                 responseObj.freeformInputAccepted = true;
-                
-                this.setCurrentOnboardingIndex(6);
+
+                this.setCurrentOnboardingIndex(
+                  this.state.currentOnboardingIndex + 1,
+                );
                 this.setOnboarding(userMessageText, 'country');
               } else {
                 responseObj.response = [
@@ -712,27 +753,28 @@ class ProfileSetupScreen extends React.Component {
               );
             }
             break;
-          case 6:
+
+          case 4:
             if (userMessageText.length > 0) {
               // Validate US zip code.
-              if(/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(userMessageText)) {
-                responseObj.response = ['What are your preferred pronouns?'];
+              if (isValidZipCode(userMessageText)) {
+                responseObj.response = [
+                  'Do you have a referral code from your clinic? (it would be included in your invitiation email from your clinic)',
+                ];
                 responseObj.responseOptions = {
-                  'She/her/hers': '',
-                  'He/him/his': '',
-                  'They/them/their': '',
-                  Other: '',
+                  Yes: '',
+                  No: '',
                 };
                 responseObj.freeformInputAccepted = false;
 
                 this.setCurrentOnboardingIndex(
                   this.state.currentOnboardingIndex + 1,
                 );
-         
-                this.setOnboarding(userMessageText, 'workingStatus');
+
+                this.setOnboarding(userMessageText, 'zipCode');
               } else {
                 responseObj.response = [
-                  "Sorry, Zip code is not valid. Please input valid zip code.",
+                  'Sorry, zip code is not valid. Please enter a valid zip code.',
                 ];
                 responseObj.freeformInputAccepted = true;
               }
@@ -743,7 +785,81 @@ class ProfileSetupScreen extends React.Component {
               responseObj.freeformInputAccepted = true;
             }
             break;
+
+          case 5:
+            if (userMessageText.length > 0) {
+              responseObj.response = ['Please enter your referral code'];
+              responseObj.freeformInputAccepted = true;
+
+              this.setCurrentOnboardingIndex(
+                this.state.currentOnboardingIndex + 1,
+              );
+            } else {
+              responseObj.response = [''];
+            }
+            break;
+
+          case 6:
+            if (userMessageText.length > 0) {
+              //  FIXMETUNA:  need to add a check for NONE at this point in the conversation
+              if (userMessageText == ceapsReferralCode) {
+                //  FIXMETUNA:  this is a place holder, will need to use a dict as we start to work with multiple clinics
+                matchingClinic = 'CEAPS Clinic';
+                responseObj.response = [
+                  'This code matches ' +
+                    matchingClinic +
+                    ', their contact information has been added to your account.',
+                  'When is your surgery scehduled?',
+                ];
+                responseObj.freeformInputAccepted = false;
+                this.setDatePickerMode('date');
+                this.delayedExecution(2500, () =>
+                  this.setDatePickerVisible(true),
+                );
+
+                this.setCurrentOnboardingIndex(
+                  this.state.currentOnboardingIndex + 1,
+                );
+                this.setOnboarding(userMessageText, 'associatedClinic');
+              } else {
+                responseObj.response = [
+                  'Sorry that code does not match any clinics in our system',
+                  "If you don't have a matching code, you can always enter a new referral code in the app settings if you find it later",
+                  "Please enter your referral code or type NONE if you don't have a code at this time",
+                ];
+                responseObj.freeformInputAccepted = true;
+              }
+            } else {
+              responseObj.response = [
+                'Sorry that code does not match any clinics in our system',
+                "If you don't have a matching code, you can always enter a new referral code in the app settings if you find it later",
+                "Please enter your referral code or type NONE if you don't have a code at this time",
+              ];
+              responseObj.freeformInputAccepted = true;
+            }
+            break;
+
           case 7:
+            if (userMessageText.length > 0) {
+              responseObj.response = additionalPrependedResponses.concat([
+                'What are your preferred pronouns?',
+              ]);
+              responseObj.responseOptions = {
+                'She/her/hers': '',
+                'He/him/his': '',
+                'They/them/their': '',
+                Other: '',
+              };
+              responseObj.freeformInputAccepted = false;
+
+              this.setCurrentOnboardingIndex(
+                this.state.currentOnboardingIndex + 1,
+              );
+            } else {
+              responseObj.response = [''];
+            }
+            break;
+          case 8:
             if (userMessageText.length > 0) {
               responseObj.response = [
                 'I know this might not be your current sex or gender, but in order to provide you with relevant medical content, do you mind telling me your assigned biological sex at birth?',
@@ -760,7 +876,7 @@ class ProfileSetupScreen extends React.Component {
               responseObj.response = [''];
             }
             break;
-          case 8:
+          case 9:
             if (userMessageText.length > 0) {
               responseObj.response = [
                 'Would you like to track your menstrual cycle?',
@@ -769,7 +885,9 @@ class ProfileSetupScreen extends React.Component {
                 Yes: '',
                 No: '',
               };
-              this.setCurrentOnboardingIndex(10);
+              this.setCurrentOnboardingIndex(
+                this.state.currentOnboardingIndex + 1,
+              );
               this.setOnboarding(userMessageText, 'sexAtBirth');
             } else {
               responseObj.response = [''];
@@ -1752,6 +1870,7 @@ class ProfileSetupScreen extends React.Component {
   };
 
   render() {
+    
     const {navigation} = this.props;
 
     const [
@@ -1767,9 +1886,11 @@ class ProfileSetupScreen extends React.Component {
         {garden => (
           <View
             testID="giftedChatView"
-            style={{flex: 1, alignContent: 'center'}}>
+            style={{flex: 1, alignContent: 'center', bottom: this.state.inputVisible? 45: 0}}>
             <GiftedChat
-              ref={this.giftedChatRef}
+              // ref={this.giftedChatRef}
+              textInputRef={this.giftedChatInputRef}
+              // messageContainerRef={this.giftedChatRef}
               messages={this.state.chatbotModalMessages}
               onSend={messages => this.onSend(messages)}
               user={{
@@ -1797,16 +1918,16 @@ class ProfileSetupScreen extends React.Component {
               minComposerHeight={45}
               maxComposerHeight={45}
               minInputToolbarHeight={this.state.userResponseContainerHeight}
-              renderInputToolbar={props => (
-            
-                this.state.inputVisible && ( 
-                <View
-                  style={{
-                    // flex: 1,
-                    height: this.state.userResponseContainerHeight,
-                    marginVertical: 0,
-                    paddingVertical: 0,
-                  }}>
+              renderInputToolbar={props =>
+                this.state.inputVisible && (
+                  <View
+                    style={{
+                      // flex: 1,
+                      height: this.state.userResponseContainerHeight,
+                      marginVertical: 0,
+                      paddingVertical: 0,
+                      bottom: -45
+                    }}>
                     <InputToolbar
                       testID="inputToolbarInput"
                       {...props}
@@ -1821,9 +1942,9 @@ class ProfileSetupScreen extends React.Component {
                         />
                       )}
                     />
-                </View>)
-
-              )}
+                  </View>
+                )
+              }
             />
 
             {this.getDatePicker()}
@@ -1835,6 +1956,7 @@ class ProfileSetupScreen extends React.Component {
                   justifyContent: 'center',
                   marginTop: 0,
                   paddingTop: 0,
+                  marginBottom: 4,
                   height: this.activeItemHeight,
                 }}>
                 <View
@@ -1868,8 +1990,7 @@ class ProfileSetupScreen extends React.Component {
                   paddingTop: 0,
                   left: theme.SIZES.BASE * -0.5,
                   marginHorizontal: theme.SIZES.BASE * 0.5,
-                  height:
-                    this.activeItemHeight * multiOptionActiveRowCount,
+                  height: this.activeItemHeight * multiOptionActiveRowCount,
                   width: width + theme.SIZES.BASE,
                 }}>
                 {this.getCheckboxList(this.state.multiOptionPickerList)}
@@ -1883,9 +2004,9 @@ class ProfileSetupScreen extends React.Component {
                   justifyContent: 'center',
                   marginTop: 0,
                   paddingTop: 0,
+                  marginBottom: 8,
                   height:
-                    this.activeItemHeight *
-                    buttonResponseListActiveRowCount,
+                    this.activeItemHeight * buttonResponseListActiveRowCount,
                 }}>
                 <View
                   testID="inputToolbarButtonResponsesView"
@@ -1916,8 +2037,7 @@ class ProfileSetupScreen extends React.Component {
                           if (responseObj[1] == 'exit') {
                             if (
                               !(
-                                this.props.userProfile
-                                  .introHealthSurvey == null
+                                this.props.userProfile.introHealthSurvey == null
                               ) &&
                               Object.keys(
                                 this.props.userProfile.introHealthSurvey,
@@ -1929,17 +2049,21 @@ class ProfileSetupScreen extends React.Component {
                               this.mixpanel.track('introHealthSurvey', {
                                 timestamp: introTS,
                                 HRQOL1:
-                                  this.props.userProfile
-                                    .introHealthSurvey[introTS]['HRQOL1'],
+                                  this.props.userProfile.introHealthSurvey[
+                                    introTS
+                                  ]['HRQOL1'],
                                 HRQOL2:
-                                  this.props.userProfile
-                                    .introHealthSurvey[introTS]['HRQOL2'],
+                                  this.props.userProfile.introHealthSurvey[
+                                    introTS
+                                  ]['HRQOL2'],
                                 HRQOL3:
-                                  this.props.userProfile
-                                    .introHealthSurvey[introTS]['HRQOL3'],
+                                  this.props.userProfile.introHealthSurvey[
+                                    introTS
+                                  ]['HRQOL3'],
                                 HRQOL4:
-                                  this.props.userProfile
-                                    .introHealthSurvey[introTS]['HRQOL4'],
+                                  this.props.userProfile.introHealthSurvey[
+                                    introTS
+                                  ]['HRQOL4'],
                               });
                             }
                             console.log('EXIT');
@@ -1975,7 +2099,6 @@ class ProfileSetupScreen extends React.Component {
                 </View>
               </View>
             )}
-
           </View>
         )}
       </GardenContext.Consumer>
