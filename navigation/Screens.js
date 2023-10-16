@@ -9792,6 +9792,7 @@ function LearnStack(props) {
           headerTransparent: true,
         }}
       />
+
       <Stack.Screen
         name="AssessmentResult"
         component={AssessmentResultScreen}
@@ -10557,7 +10558,7 @@ function GardenStack(props) {
 }
 
 function AppStack(props) {
-  const localState = useSelector(state => state);
+  // const localState = useSelector(state => state);
   useEffect(() => {
     return () => {
       // componentwillunmount in functional component.
@@ -10579,7 +10580,7 @@ function AppStack(props) {
       }}
       drawerContent={props => (
         <CustomDrawerContent
-          localState={localState}
+          // localState={localState}
           dispatchPassed={useDispatch}
           sessionControlComponent={() => {}}
           {...props}

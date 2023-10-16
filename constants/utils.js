@@ -25,6 +25,14 @@ const utils = {
     {title: 'Poor'},
   ],
 
+  ehp30QualityList: [
+    {title: 'Never'},
+    {title: 'Rarely'},
+    {title: 'Sometimes'},
+    {title: 'Often'},
+    {title: 'Always'},
+  ],
+
   numberList: [
     {title: '0'},
     {title: '1'},
@@ -440,5 +448,38 @@ const utils = {
     53: 'When was the last time you had a medical checkup?',
     54: "Do you always take medicine when you're sick, or do you try home remedies?",
   },
+
+  ehp30Questions: [
+    'Been unable to go to social events because of the pain?',
+    'Been unable to do jobs around the home because of the pain?',
+    'Found it difficult to stand because of the pain?',
+    'Found it difficult to sit because of the pain?',
+    'Found it difficult to walk because of the pain?',
+    'Found it difficult to exercise or do the leisure activities you would like to do because of the pain?',
+    'Lost your appetite and/or been unable to eat because of the pain?',
+    'Been unable to sleep properly because of the pain?',
+    'Had to go to bed/lie down because of the pain?',
+    'Been unable to do the things you want to do because of the pain?',
+    'Felt unable to cope with the pain?',
+    'Generally felt unwell?',
+    'Felt frustrated because your symptoms are not getting better?',
+    'Felt frustrated because you are not able to control your symptoms?',
+    'Felt unable to forget your symptoms?',
+    'Felt as though your symptoms are ruling your life?',
+    'Felt your symptoms are taking away your life?',
+    'Felt depressed?',
+    'Felt weepy/tearful?',
+    'Felt miserable?',
+    'Had mood swings?',
+    'Felt bad tempered or short tempered?',
+    'Felt violent or aggressive?',
+    'Felt unable to tell people how you feel?',
+    'Felt others do not understand what you are going through?',
+    'Felt as though others think you are moaning?',
+    'Felt alone?',
+    'Felt frustrated as you cannot always wear the clothes you would choose?',
+    'Felt your appearance has been affected?',
+    'Lacked confidence?',
+  ],
 };
 export default utils;

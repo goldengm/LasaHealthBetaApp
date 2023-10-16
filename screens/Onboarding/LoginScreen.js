@@ -103,6 +103,10 @@ class LoginScreen extends React.Component {
       });
   }
 
+  componentWillUnmount() {
+    this.setLoadingVisible(false)
+  }
+
   setEmail = async emailP => {
     this.setState({email: emailP.toString().toLowerCase().trim()});
   };
@@ -426,7 +430,7 @@ class LoginScreen extends React.Component {
             console.log('Checking for first time login');
             if (firstTimeLogin <= 0) {
               console.log('First time login confirmed');
-              this.setLoadingVisible(false);
+              // this.setLoadingVisible(false);
               return this.props.navigation.replace('ChatbotIntro');
             }
           } else {
@@ -579,7 +583,7 @@ class LoginScreen extends React.Component {
           if (!(auth.currentUser == null)) {
             if (firstTimeLogin > 0) {
               console.log('GETTING READY TO JUMP TO APP - DEBUG');
-              this.setLoadingVisible(false);
+              // this.setLoadingVisible(false);
               if (firstTimeLogin < 4) {
                 console.log(
                   'Login with unfinished profile setup confirmed: ',

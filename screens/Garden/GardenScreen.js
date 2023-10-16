@@ -26,6 +26,7 @@ import {
   fadeLottieToGold,
   fadeLottieToPartialGold,
 } from '../../garden/GardenUtils';
+import { setTodoStatusAction } from '../../redux/actions/userProfileActions';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -151,6 +152,7 @@ class GardenScreen extends React.Component {
 
   plantInvetoryItemAtCoordInGarden = (
     plantInventoryItemInGarden,
+    gardenPlots,
     positionX,
     positionY,
     ind,
@@ -169,14 +171,15 @@ class GardenScreen extends React.Component {
       matchingCol,
     );
 
-    if (matchingRow && matchingCol && matchingRow >= 0 && matchingCol >= 0) {
-      plantInventoryItemInGarden(
+    if (matchingRow && matchingCol && matchingRow >= 0 && matchingCol >= 0 && gardenPlots[matchingRow][matchingCol] == null) {
+      return plantInventoryItemInGarden(
         this.props.dispatch,
         ind,
         matchingRow,
         matchingCol,
       );
     }
+    return Promise.reject()
   };
 
   handleScroll = event => {
@@ -457,18 +460,18 @@ class GardenScreen extends React.Component {
               height: plotHeight * 0.75,
               bottom: -20,
             }}
-            onPress={() => {
-              console.log('White Onpress firing');
-            }}
-            onPressIn={() => {
-              console.log('Onpressin firing');
-            }}
-            onPressOut={() => {
-              console.log('Onpressout firing');
-            }}
-            onLongPress={() => {
-              console.log('Onlongpress firing');
-            }}
+            // onPress={() => {
+            //   console.log('White Onpress firing');
+            // }}
+            // onPressIn={() => {
+            //   console.log('Onpressin firing');
+            // }}
+            // onPressOut={() => {
+            //   console.log('Onpressout firing');
+            // }}
+            // onLongPress={() => {
+            //   console.log('Onlongpress firing');
+            // }}
           />
         </View>
       );
@@ -490,6 +493,17 @@ class GardenScreen extends React.Component {
     return false;
   };
 
+  isFirstPlant = gardenPlots => {
+    for (const gardenRow of gardenPlots) {
+      for (const gardenPlot of gardenRow) {
+        if (gardenPlot) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
   playerHasPlantsInInventory = playerInventoryItems => {
     if (playerInventoryItems && playerInventoryItems.length > 0) {
       return true;
@@ -503,7 +517,7 @@ class GardenScreen extends React.Component {
 
     const previewCount = 3;
     const itemWidth = 200 / (previewCount + 0.5);
-
+    
     return (
       <View
         style={{
@@ -1053,6 +1067,11 @@ class GardenScreen extends React.Component {
                             3,
                           )}
                         </View>
+                        <View
+                          testID="gardenPlotRow5BottomMargin"
+                          style={{
+                            height: 40,
+                          }}></View>
                       </View>
                     </View>
                   </View>
@@ -1128,7 +1147,9 @@ class GardenScreen extends React.Component {
                       <View>
                         <TouchableOpacity
                           testID="amieChatbotImageButton2"
-                          onPress={() => this.goToPlantShop()}
+                          onPress={() => 
+                            this.goToPlantShop()
+                          }
                           style={{
                             width: theme.SIZES.BASE * 3.5,
                             height: theme.SIZES.BASE * 3.5,
@@ -1254,12 +1275,18 @@ class GardenScreen extends React.Component {
                                     .then(() => {
                                       return this.plantInvetoryItemAtCoordInGarden(
                                         garden.plantInventoryItemInGarden,
+                                        garden.gardenState.gardenPlots,
                                         releasedX,
                                         releasedY,
                                         ind,
                                       );
                                     })
                                     .then(() => {
+                                      // If user plant the flower at first, plus 10 seed and update "to do" item 
+                                      if(!this.isFirstPlant(garden.gardenState.gardenPlots)) {
+                                        garden.addSeedsToPlayerInventory(this.props.dispatch, 10);
+                                        this.props.dispatch(setTodoStatusAction(5, 2));
+                                      }
                                       this.setScrollEnabled(true);
                                     });
                                 }}>
