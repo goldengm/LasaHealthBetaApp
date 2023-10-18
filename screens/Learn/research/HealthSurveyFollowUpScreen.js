@@ -132,6 +132,19 @@ class LearnCoursePlaceholderScreen extends React.Component {
                             marginBottom: theme.SIZES.BASE * 0.5,
                             marginTop: theme.SIZES.BASE * 1.5,
                           }}>
+                          Need to add EHP-30 Survey here, Need to make them
+                          EHP-30, NPS, and HRQol all optional depending on props
+                        </Text>
+
+                        <Text
+                          style={{
+                            color: theme.COLORS.TEXT1,
+                            fontSize: theme.SIZES.H6,
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            marginBottom: theme.SIZES.BASE * 0.5,
+                            marginTop: theme.SIZES.BASE * 1.5,
+                          }}>
                           Would you say that in general your health is:
                         </Text>
 

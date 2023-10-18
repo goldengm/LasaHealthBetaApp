@@ -399,7 +399,7 @@ class LearnCoursePlaceholderScreen extends React.Component {
               style={{
                 // key: indexCount,
                 alignContent: 'center',
-                alignItems: 'center',
+                alignItems: 'start',
                 // marginVertical: theme.SIZES.BASE * 0.25,
                 marginVertical: 0,
                 marginBottom: 0,
