@@ -27,9 +27,6 @@
       [FIRApp configure];
     }
 
-
-    // [super application:application didFinishLaunchingWithOptions:launchOptions];
-
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate = self;
 
