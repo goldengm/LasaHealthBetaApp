@@ -24,10 +24,12 @@ import produce from 'immer';
 //     },
 
 function allActiveTodosComplete(draft) {
+  // Because allTodo length is 6, updated condition command.
   if (
     draft.allTodo[draft.activeTodo['0']]['status'] > 1 &&
     draft.allTodo[draft.activeTodo['1']]['status'] > 1 &&
-    draft.allTodo[draft.activeTodo['2']]['status'] > 1
+    (draft.activeTodo['2'] == '' ||
+      draft.allTodo[draft.activeTodo['2']]['status'] > 1)
   ) {
     return true;
   } else {
@@ -73,6 +75,8 @@ initialStateUPR = {
       birthday: '',
       country: '',
       zipCode: '',
+      associatedClinic: '',
+      surgeryDate: '',
       schoolStatus: '',
       workingStatus: '',
       preferredPronouns: '',

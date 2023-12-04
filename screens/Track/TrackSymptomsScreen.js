@@ -462,6 +462,7 @@ class TrackSymptomsScreen extends React.Component {
     const {navigation} = this.props;
 
     this.mixpanel.track('trackSymptomsScreen_reached');
+    console.log(this.props.trackingLogStaging.tsFromPast)
     if (this.props.trackingLogStaging.tsFromPast) {
       this.updatedCombinedSymptomList();
       this._unsubscribe = navigation.addListener('focus', () => {
@@ -482,7 +483,8 @@ class TrackSymptomsScreen extends React.Component {
           this.props.dispatch(
             addTrackingLogStagingTimestampAction(
               this.getCurrentTimestampMinutes(),
-              false,
+              // false,
+              true
             ),
           );
         }
@@ -1338,7 +1340,14 @@ class TrackSymptomsScreen extends React.Component {
       })
 
       .then(() => {
-        return this.props.dispatch(setTodoStatusAction(2, 2));
+        const trackingLog = this.props.trackingLog
+        // First symptom log
+        if(!trackingLog || Object.keys(trackingLog).length === 1) {
+          return this.props.dispatch(setTodoStatusAction(2, 2));
+        } else if(Object.keys(trackingLog).length == 7) { // 7th symptom log
+          garden.addSeedsToPlayerInventory(this.props.dispatch, 10);
+          return this.props.dispatch(setTodoStatusAction(4, 2));
+        }
       })
 
       .then(() => {

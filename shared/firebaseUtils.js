@@ -758,6 +758,24 @@ function dbUpgradeVersion0602to0604(serverAppSaveState) {
   }
 }
 
+function dbUpgradeVersion0604to0605(serverAppSaveState) {
+  if (isDbUpdateNeeded('0.6.5', serverAppSaveState.session.dbVersion)) {
+    console.log('Updating db version 0.6.4 to 0.6.5');
+    let convertedSaveState = cloneDeep(serverAppSaveState);
+    convertedSaveState.session['dbVersion'] = '0.6.5';
+
+    convertedSaveState.userProfile.OnboardingAnswers.onboarding[
+      'associatedClinic'
+    ] = '';
+    convertedSaveState.userProfile.OnboardingAnswers.onboarding['surgeryDate'] =
+      '';
+
+    return convertedSaveState;
+  } else {
+    return serverAppSaveState;
+  }
+}
+
 const superchatMemberUIDList = [
   'WlyonwDSvDY7ryW3J2EzE3RZujB3',
   'WMOFdBADU8UlKVIPTMVu4IVUcx42',
@@ -842,6 +860,8 @@ function updateSaveStateToCurrentDBVersion(serverAppSaveState) {
   convertedSaveState = dbUpgradeVersion0529to0601(convertedSaveState);
   convertedSaveState = dbUpgradeVersion0601to0602(convertedSaveState);
   convertedSaveState = dbUpgradeVersion0602to0604(convertedSaveState);
+
+  convertedSaveState = dbUpgradeVersion0604to0605(convertedSaveState);
 
   return convertedSaveState;
 }

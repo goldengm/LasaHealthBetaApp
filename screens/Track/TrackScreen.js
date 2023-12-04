@@ -39,6 +39,7 @@ import Blob1 from '../../assets/ui/general/Blob1.svg';
 import Blob2 from '../../assets/ui/general/Blob2.svg';
 import Blob4 from '../../assets/ui/general/Blob4.svg';
 import {getOS} from '../../shared/PlatformUtils';
+import { isArray } from 'lodash';
 
 const iosPlatform = () => getOS() == 'ios';
 const {width, height} = Dimensions.get('screen');
@@ -496,6 +497,18 @@ class TrackScreen extends React.Component {
       return false;
     }
   };
+
+  convertGraphData = (data) => {
+    if(!isArray(data)) return [];
+    let ret = [...data];
+    let dateLen = ret.length;
+    for(let i = 1; i < dateLen; i++) {
+      if(ret[i].y == 0) {
+        ret[i] = {"x": ret[i]["x"], "y": ret[i-1]["y"]};
+      }
+    }
+    return ret
+  }
 
   render() {
     const {navigation} = this.props;
@@ -1480,7 +1493,7 @@ class TrackScreen extends React.Component {
 
                           <LineGraph
                             title={'Happiness Over Time'}
-                            data={newChartStats['chart2HappinessOverTime']}
+                            data={this.convertGraphData(newChartStats['chart2HappinessOverTime'])}
                             customPadding={{
                               left: theme.SIZES.BASE * 4,
                               right: theme.SIZES.BASE * 2,
@@ -1503,7 +1516,7 @@ class TrackScreen extends React.Component {
 
                           <LineGraph
                             title={'Symptoms Over Time'}
-                            data={newChartStats['chart1SympOverTime']}
+                            data={this.convertGraphData(newChartStats['chart1SympOverTime'])}
                             customTitleComponant={() =>
                               this.getSymptomMetricSelector(newChartStats)
                             }

@@ -16,29 +16,31 @@ import SurveyModal from '../shared/SurveyModal';
 // const iosPlatform = () => getOS() == 'ios';
 // const {width, height} = Dimensions.get('screen');
 
-function isSurveyModalVisible(userProfile) {
-  //  FIXMETUNA: need to check and only activate once a month after the first month
+// function isSurveyModalVisible(userProfile) {
+//   //  FIXMETUNA: need to check and only activate once a month after the first month
 
-  if (Object.keys(userProfile.introHealthSurvey).length > 0) {
-    const initialSurveyTS = parseInt(
-      Object.keys(userProfile.introHealthSurvey)[0],
-    );
-    const numFollowUpSurveys = Object.keys(
-      userProfile.followUpHealthSurveys,
-    ).length;
-    const currentTSObj = new XDate();
+//   if (Object.keys(userProfile.introHealthSurvey).length > 0) {
+//     const initialSurveyTS = parseInt(
+//       Object.keys(userProfile.introHealthSurvey)[0],
+//     );
+//     const numFollowUpSurveys = Object.keys(
+//       userProfile.followUpHealthSurveys,
+//     ).length;
+//     const currentTSObj = new XDate();
 
-    //  diff months should be negative since the initial surveyTS is in the past
-    const numMonthsSinceIntroDiff = currentTSObj.diffMonths(initialSurveyTS);
-    if (numMonthsSinceIntroDiff < 0) {
-      const numMonthsSinceIntro = Math.floor(numMonthsSinceIntroDiff * -1.0);
-      if (numMonthsSinceIntro > numFollowUpSurveys) {
-        return true;
-      }
-    }
-  }
-  return false;
-}
+//     //  diff months should be negative since the initial surveyTS is in the past
+//     const numMonthsSinceIntroDiff = currentTSObj.diffMonths(initialSurveyTS);
+//     if (numMonthsSinceIntroDiff < 0) {
+//       const numMonthsSinceIntro = Math.floor(numMonthsSinceIntroDiff * -1.0);
+
+//       const dayDiff = Math.floor(-currentTSObj.diffDays(initialSurveyTS)) % 7;
+//       if (numMonthsSinceIntro > numFollowUpSurveys && dayDiff < 7) {
+//         return true;
+//       }
+//     }
+//   }
+//   return false;
+// }
 
 function SessionControllerWrapped(props) {
   const {
@@ -51,13 +53,12 @@ function SessionControllerWrapped(props) {
 
   const [amieModalVisible, setAmieModalVisible] = useState(false);
 
-  const isSurveyModalVisibleTMP = isSurveyModalVisible(userProfile);
+  // const isSurveyModalVisibleTMP = isSurveyModalVisible(userProfile);
 
   const [appIntroTutorialVisible, setAppIntroTutorialVisible] = useState(false);
   const [tutorialPageNumber, setTutorialPageNumber] = useState(0);
-  const [surveyModalVisible, setSurveyModalVisible] = useState(
-    isSurveyModalVisibleTMP,
-  );
+  const [surveyModalVisible, setSurveyModalVisible] = useState(false);
+  const [surveyModalKey, setSurveyModalKey] = useState('');
 
   useEffect(() => {
     // componentwillmount in functional component.
@@ -103,6 +104,15 @@ function SessionControllerWrapped(props) {
       },
     );
 
+    const _unsubscribeShowSurveyModal = DeviceEventEmitter.addListener(
+      'event.showSurveyModal',
+      eventData => {
+        console.log('Survey modal TRIGGERED');
+        setSurveyModalKey(eventData.surveyModalKey);
+        setSurveyModalVisible(true);
+      },
+    );
+
     return () => {
       // Don't forget to unsubscribe, typically in componentWillUnmount
       _unsubscribeToast.remove();
@@ -140,6 +150,7 @@ function SessionControllerWrapped(props) {
         navigation={navigation}
         modalVisible={surveyModalVisible}
         setModalVisible={setSurveyModalVisible}
+        surveyModalKey={surveyModalKey}
       />
     </View>
   );

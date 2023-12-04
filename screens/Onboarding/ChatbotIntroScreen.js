@@ -151,7 +151,21 @@ class ChatbotIntroScreen extends React.Component {
                       justifyContent: 'center',
                       alignItems: 'flex-end',
                     }}>
-                    <Image
+                       <Text style={{
+                        position: 'relative',
+                        width: 230,
+                        top: 0,
+                        zIndex: 5,
+                        textAlign: "center",
+                        padding: theme.SIZES.BASE,
+                        fontSize: theme.SIZES.B1,
+                        lineHeight: 22,
+                        borderRadius: 10,
+                        backgroundColor: theme.COLORS.WHITE,
+                      }}>
+                        Hi. I'm Lasa - an AI chatbot here to help you navigate your health
+                      </Text>
+                    {/* <Image
                       source={Images.chatbot.ChatbubbleIntro1}
                       style={{
                         position: 'relative',
@@ -160,7 +174,7 @@ class ChatbotIntroScreen extends React.Component {
                         top: 18,
                         zIndex: 5,
                       }}
-                    />
+                    /> */}
                   </View>
                   <View style={{flex: 2.5}}>
                     <PageSwiper
@@ -171,7 +185,8 @@ class ChatbotIntroScreen extends React.Component {
                         paddingVertical: 0,
                       }}
                       onChangeIndex={this.changeAIChatbotIndex}
-                      dotStyle={{backgroundColor: theme.COLORS.TRANSPARENT}}
+                      activeDotStyle={{backgroundColor: theme.COLORS.OVERLAY_INDICATOR_BG}}
+                      dotStyle={{backgroundColor: theme.COLORS.OVERLAY_HIGHLIGHT}}
                       skipLabel={''}
                       doneLabel={''}
                       nextLabel={''}

@@ -546,6 +546,297 @@ export class HomeScreen extends React.Component {
                             </TouchableOpacity>
                           </LinearGradient>
                         </View>
+
+                        {/* <View
+                          style={{
+                            flexDirection: 'row',
+                            marginBottom: theme.SIZES.BASE * 3,
+                          }}>
+                          <Button
+                            style={{
+                              ...styles.button,
+                              backgroundColor: theme.COLORS.PRIMARY2,
+                              fontSize: 16,
+                              fontWeight: '700',
+                              width: theme.SIZES.BASE * 4,
+                            }}
+                            titleStyle={{color: theme.COLORS.WHITE}}
+                            title="Test1"
+                            onPress={() => {
+                              setTimeout(() => {
+                                //  giving session controller 1.5 seconds to load before sending trigger
+                                console.log('Showing tutorial for home screen');
+                                DeviceEventEmitter.emit(
+                                  'event.showSurveyModal',
+                                  {
+                                    surveyModalKey: 'followUpHealthSurveys',
+                                  },
+                                );
+                              }, 100);
+                            }}
+                          />
+                          <Button
+                            style={{
+                              ...styles.button,
+                              backgroundColor: theme.COLORS.PRIMARY2,
+                              fontSize: 16,
+                              fontWeight: '700',
+                              width: theme.SIZES.BASE * 4,
+                            }}
+                            titleStyle={{color: theme.COLORS.WHITE}}
+                            title="Test2"
+                            onPress={() => {
+                              setTimeout(() => {
+                                //  giving session controller 1.5 seconds to load before sending trigger
+                                console.log('Showing tutorial for home screen');
+                                DeviceEventEmitter.emit(
+                                  'event.showSurveyModal',
+                                  {
+                                    surveyModalKey: 'ceapsFollowup2WeeksPrior',
+                                  },
+                                );
+                              }, 100);
+                            }}
+                          />
+                          <Button
+                            style={{
+                              ...styles.button,
+                              backgroundColor: theme.COLORS.PRIMARY2,
+                              fontSize: 16,
+                              fontWeight: '700',
+                              width: theme.SIZES.BASE * 4,
+                            }}
+                            titleStyle={{color: theme.COLORS.WHITE}}
+                            title="Test3"
+                            onPress={() => {
+                              setTimeout(() => {
+                                //  giving session controller 1.5 seconds to load before sending trigger
+                                console.log('Showing tutorial for home screen');
+                                DeviceEventEmitter.emit(
+                                  'event.showSurveyModal',
+                                  {
+                                    surveyModalKey: 'ceapsFollowup1WeekPrior',
+                                  },
+                                );
+                              }, 100);
+                            }}
+                          />
+                          <Button
+                            style={{
+                              ...styles.button,
+                              backgroundColor: theme.COLORS.PRIMARY2,
+                              fontSize: 16,
+                              fontWeight: '700',
+                              width: theme.SIZES.BASE * 4,
+                            }}
+                            titleStyle={{color: theme.COLORS.WHITE}}
+                            title="Test4"
+                            onPress={() => {
+                              setTimeout(() => {
+                                //  giving session controller 1.5 seconds to load before sending trigger
+                                console.log('Showing tutorial for home screen');
+                                DeviceEventEmitter.emit(
+                                  'event.showSurveyModal',
+                                  {
+                                    surveyModalKey: 'ceapsFollowup1DayPrior',
+                                  },
+                                );
+                              }, 100);
+                            }}
+                          />
+                          <Button
+                            style={{
+                              ...styles.button,
+                              backgroundColor: theme.COLORS.PRIMARY2,
+                              fontSize: 16,
+                              fontWeight: '700',
+                              width: theme.SIZES.BASE * 4,
+                            }}
+                            titleStyle={{color: theme.COLORS.WHITE}}
+                            title="Test5"
+                            onPress={() => {
+                              setTimeout(() => {
+                                //  giving session controller 1.5 seconds to load before sending trigger
+                                console.log('Showing tutorial for home screen');
+                                DeviceEventEmitter.emit(
+                                  'event.showSurveyModal',
+                                  {
+                                    surveyModalKey: 'ceapsFollowupDayOf',
+                                  },
+                                );
+                              }, 100);
+                            }}
+                          />
+                          <Button
+                            style={{
+                              ...styles.button,
+                              backgroundColor: theme.COLORS.PRIMARY2,
+                              fontSize: 16,
+                              fontWeight: '700',
+                              width: theme.SIZES.BASE * 4,
+                            }}
+                            titleStyle={{color: theme.COLORS.WHITE}}
+                            title="Test6"
+                            onPress={() => {
+                              setTimeout(() => {
+                                //  giving session controller 1.5 seconds to load before sending trigger
+                                console.log('Showing tutorial for home screen');
+                                DeviceEventEmitter.emit(
+                                  'event.showSurveyModal',
+                                  {
+                                    surveyModalKey: 'ceapsFollowup1DayAfter',
+                                  },
+                                );
+                              }, 100);
+                            }}
+                          />
+                        </View>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            marginBottom: theme.SIZES.BASE * 3,
+                          }}>
+                          <Button
+                            style={{
+                              ...styles.button,
+                              backgroundColor: theme.COLORS.PRIMARY2,
+                              fontSize: 16,
+                              fontWeight: '700',
+                              width: theme.SIZES.BASE * 4,
+                            }}
+                            titleStyle={{color: theme.COLORS.WHITE}}
+                            title="Test7"
+                            onPress={() => {
+                              setTimeout(() => {
+                                //  giving session controller 1.5 seconds to load before sending trigger
+                                console.log('Showing tutorial for home screen');
+                                DeviceEventEmitter.emit(
+                                  'event.showSurveyModal',
+                                  {
+                                    surveyModalKey: 'ceapsFollowup3DaysAfter',
+                                  },
+                                );
+                              }, 100);
+                            }}
+                          />
+                          <Button
+                            style={{
+                              ...styles.button,
+                              backgroundColor: theme.COLORS.PRIMARY2,
+                              fontSize: 16,
+                              fontWeight: '700',
+                              width: theme.SIZES.BASE * 4,
+                            }}
+                            titleStyle={{color: theme.COLORS.WHITE}}
+                            title="Test8"
+                            onPress={() => {
+                              setTimeout(() => {
+                                //  giving session controller 1.5 seconds to load before sending trigger
+                                console.log('Showing tutorial for home screen');
+                                DeviceEventEmitter.emit(
+                                  'event.showSurveyModal',
+                                  {
+                                    surveyModalKey: 'ceapsFollowup1WeekAfter',
+                                  },
+                                );
+                              }, 100);
+                            }}
+                          />
+                          <Button
+                            style={{
+                              ...styles.button,
+                              backgroundColor: theme.COLORS.PRIMARY2,
+                              fontSize: 16,
+                              fontWeight: '700',
+                              width: theme.SIZES.BASE * 4,
+                            }}
+                            titleStyle={{color: theme.COLORS.WHITE}}
+                            title="Test9"
+                            onPress={() => {
+                              setTimeout(() => {
+                                //  giving session controller 1.5 seconds to load before sending trigger
+                                console.log('Showing tutorial for home screen');
+                                DeviceEventEmitter.emit(
+                                  'event.showSurveyModal',
+                                  {
+                                    surveyModalKey: 'ceapsFollowup1MonthAfter',
+                                  },
+                                );
+                              }, 100);
+                            }}
+                          />
+                          <Button
+                            style={{
+                              ...styles.button,
+                              backgroundColor: theme.COLORS.PRIMARY2,
+                              fontSize: 16,
+                              fontWeight: '700',
+                              width: theme.SIZES.BASE * 4,
+                            }}
+                            titleStyle={{color: theme.COLORS.WHITE}}
+                            title="Test10"
+                            onPress={() => {
+                              setTimeout(() => {
+                                //  giving session controller 1.5 seconds to load before sending trigger
+                                console.log('Showing tutorial for home screen');
+                                DeviceEventEmitter.emit(
+                                  'event.showSurveyModal',
+                                  {
+                                    surveyModalKey: 'ceapsFollowupPostOp',
+                                  },
+                                );
+                              }, 100);
+                            }}
+                          />
+                          <Button
+                            style={{
+                              ...styles.button,
+                              backgroundColor: theme.COLORS.PRIMARY2,
+                              fontSize: 16,
+                              fontWeight: '700',
+                              width: theme.SIZES.BASE * 4,
+                            }}
+                            titleStyle={{color: theme.COLORS.WHITE}}
+                            title="Test11"
+                            onPress={() => {
+                              setTimeout(() => {
+                                //  giving session controller 1.5 seconds to load before sending trigger
+                                console.log('Showing tutorial for home screen');
+                                DeviceEventEmitter.emit(
+                                  'event.showSurveyModal',
+                                  {
+                                    surveyModalKey:
+                                      'ceapsFollowupOngoingSupport',
+                                  },
+                                );
+                              }, 100);
+                            }}
+                          />
+                          <Button
+                            style={{
+                              ...styles.button,
+                              backgroundColor: theme.COLORS.PRIMARY2,
+                              fontSize: 16,
+                              fontWeight: '700',
+                              width: theme.SIZES.BASE * 4,
+                            }}
+                            titleStyle={{color: theme.COLORS.WHITE}}
+                            title="Test12"
+                            onPress={() => {
+                              setTimeout(() => {
+                                //  giving session controller 1.5 seconds to load before sending trigger
+                                console.log('Showing tutorial for home screen');
+                                DeviceEventEmitter.emit(
+                                  'event.showSurveyModal',
+                                  {
+                                    surveyModalKey: '',
+                                  },
+                                );
+                              }, 100);
+                            }}
+                          />
+                        </View> */}
+
                         <View style={{top: theme.SIZES.BASE * -2}}>
                           <TouchableOpacity
                             style={{
